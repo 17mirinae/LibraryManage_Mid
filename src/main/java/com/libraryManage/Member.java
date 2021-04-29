@@ -42,8 +42,10 @@ public class Member {
 	}
 
 	public void changePassword(String oldPassword, String newPassword) {
-		if (!password.equals(oldPassword))
+		if (!password.equals(oldPassword)) {
+			System.out.println("비밀번호를 확인하세요.");
 			throw new IdPasswordNotMatchingException();
+		}
 		this.password = newPassword;
 	}
 

@@ -1,7 +1,6 @@
 package com.libraryManage;
 
 public class RegisterRequest {
-
 	private String email;
 	private String password;
 	private String confirmPassword;
@@ -42,5 +41,4 @@ public class RegisterRequest {
 	public boolean isPasswordEqualToConfirmPassword() {
 		return password.equals(confirmPassword);
 	}
-
 }

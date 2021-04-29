@@ -3,16 +3,24 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<bean id="memberDao" class="com.libraryManage.MemberDAO">
-	</bean>
+
+	<bean id="memberDao" class="com.libraryManage.MemberDAO" />
+
 	<bean id="memberRegSvc"
 		class="com.libraryManage.MemberRegisterService">
 		<constructor-arg ref="memberDao" />
 	</bean>
-	<bean id="memberPrinter" class="com.libraryManage.MemberPrinter">
+
+	<bean id="memberLoginSvc"
+		class="com.libraryManage.MemberLoginService">
+		<constructor-arg ref="memberDao" />
 	</bean>
+
+	<bean id="memberPrinter" class="com.libraryManage.MemberPrinter" />
+
 	<bean id="infoPrinter" class="com.libraryManage.MemberInfoPrinter">
 		<property name="memberDAO" ref="memberDao" />
 		<property name="printer" ref="memberPrinter" />
 	</bean>
+	
 </beans>
