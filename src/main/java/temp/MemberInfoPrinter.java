@@ -1,9 +1,12 @@
-package com.libraryManage;
+package temp;
 
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+
+import com.libraryManage.Member;
+import com.libraryManage.MemberDAO;
 
 public class MemberInfoPrinter {
 

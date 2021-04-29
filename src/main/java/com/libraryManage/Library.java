@@ -5,16 +5,18 @@ import java.util.*;
 import org.springframework.context.*;
 import org.springframework.context.support.*;
 
+import temp.MemberInfoPrinter;
+
 public class Library {
 	public static void main(String[] args) {
 		ApplicationContext ctx = new GenericXmlApplicationContext("classpath:applicationContext.xml");
 
-		MemberRegisterService memRegSvc = (MemberRegisterService) ctx.getBean("memberRegSvc"); // 회원가입
-		MemberLoginService memLoginSvc = (MemberLoginService) ctx.getBean("memberLoginSvc"); // 로그인
+		RegisterService memRegSvc = (RegisterService) ctx.getBean("RegSvc"); // 회원가입
+		LoginService memLoginSvc = (LoginService) ctx.getBean("LoginSvc"); // 로그인
 
 		MemberInfoPrinter infoPrinter = ctx.getBean("infoPrinter", MemberInfoPrinter.class);
 
-//		AddBookService addBookSvc = (AddBookService) ctx.getBean("addBookSvc");
+		AddBookService addBookSvc = (AddBookService) ctx.getBean("addBookSvc");
 
 		Scanner sc = new Scanner(System.in);
 
@@ -22,6 +24,12 @@ public class Library {
 			System.out.println("\n-----도서관-----");
 			System.out.println("1. 회원가입");
 			System.out.println("2. 로그인");
+			System.out.println("3. 책 추가");
+			System.out.println("4. 책 삭제");
+			System.out.println("5. 책 수정");
+			System.out.println("6. 도서 검색");
+			System.out.println("7. 도서 대여");
+			System.out.println("8. 도서 반납");
 			System.out.println("그 외. 사용종료");
 			System.out.print("입력: ");
 			int inputMenu = sc.nextInt();
@@ -35,6 +43,9 @@ public class Library {
 				System.out.println("로그인을 수행합니다.");
 				memLoginSvc.login();
 				break;
+			case 3:
+				System.out.println("책을 추가합니다.");
+				//addBookSvc.addBook();
 			default:
 				return;
 			}
