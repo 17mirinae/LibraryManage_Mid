@@ -9,11 +9,11 @@ public class BookRequest {
 	public String getBookId() {
 		return bookId;
 	}
-	
+
 	public void setBookId(String bookId) {
 		this.bookId = bookId;
 	}
-	
+
 	public String getBookTitle() {
 		return bookTitle;
 	}

@@ -4,37 +4,49 @@ import java.util.Date;
 
 public class Member {
 
-	private Long id;
-	private String email;
-	private String password;
-	private String name;
-	private Date registerDate;
+	private Long memId; // 사용자 번호
+	private String memEmail; // 사용자 이메일
+	private String memPwd; // 사용자 비밀번호
+	private String memName; // 사용자 이름
+	private String memPhone; // 사용자 연락처
+	private String memAddr; // 사용자 주소
+	private Date registerDate; // 사용자 등록시간
 
-	public Member(String email, String password, String name, Date registerDate) {
-		this.email = email;
-		this.password = password;
-		this.name = name;
-		this.registerDate = registerDate;
+	public Member(String _memEmail, String _memPwd, String _memName, String _memPhone, String _memAddr) {
+		this.memEmail = _memEmail;
+		this.memPwd = _memPwd;
+		this.memName = _memName;
+		this.memPhone = _memPhone;
+		this.memAddr = _memAddr;
+		this.registerDate = new Date();
 	}
 
-	void setId(Long id) {
-		this.id = id;
+	public Long getMemId() {
+		return memId;
 	}
 
-	public Long getId() {
-		return id;
+	public void setMemId(Long memId) {
+		this.memId = memId;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getMemEmail() {
+		return memEmail;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getMemPwd() {
+		return memPwd;
 	}
 
-	public String getName() {
-		return name;
+	public String getMemName() {
+		return memName;
+	}
+
+	public String getMemPhone() {
+		return memPhone;
+	}
+
+	public String getMemAddr() {
+		return memAddr;
 	}
 
 	public Date getRegisterDate() {
@@ -42,11 +54,9 @@ public class Member {
 	}
 
 	public void changePassword(String oldPassword, String newPassword) {
-		if (!password.equals(oldPassword)) {
+		if (!memPwd.equals(oldPassword))
 			System.out.println("입력 정보를 확인하세요.");
-			// throw new IdPasswordNotMatchingException();
-		}
-		this.password = newPassword;
+		else
+			this.memPwd = newPassword;
 	}
-
 }

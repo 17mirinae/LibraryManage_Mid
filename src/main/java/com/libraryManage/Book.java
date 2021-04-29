@@ -33,16 +33,19 @@ public class Book {
 		return bookPublisher;
 	}
 
-	public void setBookCount(int bookCount) {
-		this.bookCount = bookCount;
-	}
-
 	public int getBookCount() {
 		return bookCount;
+	}
+
+	public void setBookCount(int bookCount) {
+		this.bookCount = bookCount;
 	}
 
 	public boolean isLended() {
 		return isLended;
 	}
 
+	public void setLended(boolean isLended) {
+		this.isLended = isLended;
+	}
 }

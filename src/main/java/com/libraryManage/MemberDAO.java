@@ -13,12 +13,12 @@ public class MemberDAO {
 	}
 
 	public void insert(Member member) {
-		member.setId(++nextId);
-		map.put(member.getEmail(), member);
+		member.setMemId(++nextId);
+		map.put(member.getMemEmail(), member);
 	}
 
 	public void update(Member member) {
-		map.put(member.getEmail(), member);
+		map.put(member.getMemEmail(), member);
 	}
 
 	public Collection<Member> selectAll() {

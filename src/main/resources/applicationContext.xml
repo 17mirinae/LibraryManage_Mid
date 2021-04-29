@@ -6,14 +6,9 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="memberDAO" class="com.libraryManage.MemberDAO" />
 
-	<bean id="RegSvc" class="com.libraryManage.RegisterService">
+	<bean id="RegSvc" class="com.libraryManage.MemberService">
 		<constructor-arg ref="memberDAO" />
 	</bean>
-
-	<bean id="LoginSvc" class="com.libraryManage.LoginService">
-		<constructor-arg ref="memberDAO" />
-	</bean>
-
 
 	<bean id="bookDAO" class="com.libraryManage.BookDAO" />
 

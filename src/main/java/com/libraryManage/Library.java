@@ -11,8 +11,7 @@ public class Library {
 	public static void main(String[] args) {
 		ApplicationContext ctx = new GenericXmlApplicationContext("classpath:applicationContext.xml");
 
-		RegisterService RegSvc = (RegisterService) ctx.getBean("RegSvc"); // 회원가입
-		LoginService LoginSvc = (LoginService) ctx.getBean("LoginSvc"); // 로그인
+		MemberService MemSvc = (MemberService) ctx.getBean("MemSvc"); // 회원가입, 로그인
 
 		// MemberInfoPrinter infoPrinter = ctx.getBean("infoPrinter",
 		// MemberInfoPrinter.class);
@@ -38,11 +37,11 @@ public class Library {
 			switch (inputMenu) {
 			case 1:
 				System.out.println("회원가입을 수행합니다.");
-				RegSvc.regist();
+				MemSvc.regist();
 				break;
 			case 2:
 				System.out.println("로그인을 수행합니다.");
-				LoginSvc.login();
+				MemSvc.login();
 				break;
 			case 3:
 				System.out.println("책을 추가합니다.");
