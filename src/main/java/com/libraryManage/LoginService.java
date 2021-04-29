@@ -18,11 +18,11 @@ public class LoginService {
 		LoginRequest req = new LoginRequest();
 
 		System.out.print("이메일 : ");
-		String inputEmail = sc.next();
+		String inputEmail = sc.nextLine();
 		req.setEmail(inputEmail);
 
 		System.out.print("비밀번호 : ");
-		String inputPwd = sc.next();
+		String inputPwd = sc.nextLine();
 		req.setPassword(inputPwd);
 
 		Member member = memberDAO.selectByEmail(req.getEmail());

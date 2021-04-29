@@ -1,22 +1,20 @@
 package com.libraryManage;
 
 public class Book {
-	private String bookId; // 책 아이디
+	private String bookId; // 책 ISBN
 	private String bookTitle; // 책 제목
 	private String bookAuthor; // 책 저자
 	private String bookPublisher; // 책 출판사
-	private int bookCount = 0; // 책 재고수
+	private int bookCount; // 책 재고수
 	private boolean isLended; // 책 대여여부
 
-	Book(String _bookTitle, String _bookAuthor, String _bookPublisher, boolean isLended) {
+	Book(String _bookId, String _bookTitle, String _bookAuthor, String _bookPublisher) {
+		this.bookId = _bookId;
 		this.bookTitle = _bookTitle;
 		this.bookAuthor = _bookAuthor;
 		this.bookPublisher = _bookPublisher;
+		this.bookCount = 0;
 		this.isLended = false;
-	}
-
-	public void setBookId(String bookId) {
-		this.bookId = bookId;
 	}
 
 	public String getBookId() {
@@ -33,6 +31,10 @@ public class Book {
 
 	public String getBookPublisher() {
 		return bookPublisher;
+	}
+
+	public void setBookCount(int bookCount) {
+		this.bookCount = bookCount;
 	}
 
 	public int getBookCount() {

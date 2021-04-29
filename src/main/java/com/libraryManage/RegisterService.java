@@ -18,19 +18,19 @@ public class RegisterService {
 		RegisterRequest req = new RegisterRequest();
 
 		System.out.print("이메일 : ");
-		String inputEmail = sc.next();
+		String inputEmail = sc.nextLine();
 		req.setEmail(inputEmail);
 
 		System.out.print("비밀번호 : ");
-		String inputPwd = sc.next();
+		String inputPwd = sc.nextLine();
 		req.setPassword(inputPwd);
 
 		System.out.print("비밀번호 확인 : ");
-		String inputConfirmPwd = sc.next();
+		String inputConfirmPwd = sc.nextLine();
 		req.setConfirmPassword(inputConfirmPwd);
 
 		System.out.print("이름 : ");
-		String inputName = sc.next();
+		String inputName = sc.nextLine();
 		req.setName(inputName);
 
 		Member member = memberDAO.selectByEmail(req.getEmail());

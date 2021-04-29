@@ -11,12 +11,13 @@ public class Library {
 	public static void main(String[] args) {
 		ApplicationContext ctx = new GenericXmlApplicationContext("classpath:applicationContext.xml");
 
-		RegisterService memRegSvc = (RegisterService) ctx.getBean("RegSvc"); // 회원가입
-		LoginService memLoginSvc = (LoginService) ctx.getBean("LoginSvc"); // 로그인
+		RegisterService RegSvc = (RegisterService) ctx.getBean("RegSvc"); // 회원가입
+		LoginService LoginSvc = (LoginService) ctx.getBean("LoginSvc"); // 로그인
 
-		MemberInfoPrinter infoPrinter = ctx.getBean("infoPrinter", MemberInfoPrinter.class);
+		// MemberInfoPrinter infoPrinter = ctx.getBean("infoPrinter",
+		// MemberInfoPrinter.class);
 
-		AddBookService addBookSvc = (AddBookService) ctx.getBean("addBookSvc");
+		BookService BookSvc = (BookService) ctx.getBean("BookSvc");
 
 		Scanner sc = new Scanner(System.in);
 
@@ -37,15 +38,20 @@ public class Library {
 			switch (inputMenu) {
 			case 1:
 				System.out.println("회원가입을 수행합니다.");
-				memRegSvc.regist();
+				RegSvc.regist();
 				break;
 			case 2:
 				System.out.println("로그인을 수행합니다.");
-				memLoginSvc.login();
+				LoginSvc.login();
 				break;
 			case 3:
 				System.out.println("책을 추가합니다.");
-				//addBookSvc.addBook();
+				BookSvc.addBook();
+				break;
+			case 4:
+				System.out.println("책을 삭제합니다.");
+				BookSvc.deleteBook();
+				break;
 			default:
 				return;
 			}
