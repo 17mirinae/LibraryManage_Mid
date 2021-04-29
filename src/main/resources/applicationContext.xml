@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="memberDao" class="com.libraryManage.MemberDAO">
+	</bean>
+	<bean id="memberRegSvc"
+		class="com.libraryManage.MemberRegisterService">
+		<constructor-arg ref="memberDao" />
+	</bean>
+	<bean id="memberPrinter" class="com.libraryManage.MemberPrinter">
+	</bean>
+	<bean id="infoPrinter" class="com.libraryManage.MemberInfoPrinter">
+		<property name="memberDAO" ref="memberDao" />
+		<property name="printer" ref="memberPrinter" />
+	</bean>
+</beans>

@@ -1,13 +1,9 @@
-package com.libraryManage;
+package com.no_1;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class MemberDAO {
-
 	private static long nextId = 0;
-
 	private Map<String, Member> map = new HashMap<>();
 
 	public Member selectByEmail(String email) {
@@ -26,5 +22,4 @@ public class MemberDAO {
 	public Collection<Member> selectAll() {
 		return map.values();
 	}
-
 }

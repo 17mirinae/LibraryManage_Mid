@@ -1,20 +1,17 @@
-package com.libraryManage;
+package com.no_1;
 
-import java.util.Date;
+import java.util.*;
 
 public class Member {
-
 	private Long id;
 	private String email;
 	private String password;
 	private String name;
-	private Date registerDate;
 
-	public Member(String email, String password, String name, Date registerDate) {
+	public Member(String email, String password, String name) {
 		this.email = email;
 		this.password = password;
 		this.name = name;
-		this.registerDate = registerDate;
 	}
 
 	void setId(Long id) {
@@ -37,14 +34,9 @@ public class Member {
 		return name;
 	}
 
-	public Date getRegisterDate() {
-		return registerDate;
-	}
-
 	public void changePassword(String oldPassword, String newPassword) {
 		if (!password.equals(oldPassword))
-			throw new IdPasswordNotMatchingException();
+			System.out.println("비밀번호가 다릅니다.");
 		this.password = newPassword;
 	}
-
 }
