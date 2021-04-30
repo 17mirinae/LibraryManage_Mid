@@ -7,7 +7,7 @@ import org.springframework.context.support.*;
 
 import temp.MemberInfoPrinter;
 
-public class Library {
+public class Main {
 	public static void main(String[] args) {
 		ApplicationContext ctx = new GenericXmlApplicationContext("classpath:applicationContext.xml");
 
