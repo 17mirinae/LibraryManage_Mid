@@ -60,7 +60,4 @@ public class BookService {
 			System.out.println("\n책 삭제 성공\n");
 		}
 	}
-	
-	public void updateBook() { // 책 정보 수정
-	}
 }

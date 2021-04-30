@@ -73,13 +73,10 @@ public class MemberService {
 		}
 	}
 
-	public void updateMem() { // 회원 수정
+	public void updateMem(Member member) { // 회원 수정
 		MemberRequest req = new MemberRequest();
-
-		System.out.print("현재 이메일 : ");
-		String memEmail = sc.nextLine();
-		req.setMemEmail(memEmail);
-
+		req.setMemEmail(member.getMemEmail());
+		
 		System.out.print("현재 비밀번호 : ");
 		String oldPwd = sc.nextLine();
 
@@ -91,9 +88,9 @@ public class MemberService {
 		String newConfirmPwd = sc.nextLine();
 		req.setMemConfirmPwd(newConfirmPwd);
 
-		Member member = memberDAO.selectByEmail(req.getMemEmail());
+		Member newMember = memberDAO.selectByEmail(req.getMemEmail());
 
-		if (member == null) { // 계정이 존재하지 않을 때
+		if (newMember == null) { // 계정이 존재하지 않을 때
 			System.out.println("\n계정이 존재하지 않습니다.\n");
 		} else if (req.isPwdEqualToConfirmPwd() && member.getMemPwd().equals(oldPwd)) { // 확인할 비밀번호와 입력한 비밀번호가 같을 시
 			member.changePassword(oldPwd, newPwd);
