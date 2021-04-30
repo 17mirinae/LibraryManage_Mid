@@ -93,7 +93,9 @@ public class MemberService {
 
 		Member member = memberDAO.selectByEmail(req.getMemEmail());
 
-		if (req.isPwdEqualToConfirmPwd()) { // 확인할 비밀번호와 입력한 비밀번호가 같을 시
+		if (member == null) { // 계정이 존재하지 않을 때
+			System.out.println("\n계정이 존재하지 않습니다.\n");
+		} else if (req.isPwdEqualToConfirmPwd() && member.getMemPwd().equals(oldPwd)) { // 확인할 비밀번호와 입력한 비밀번호가 같을 시
 			member.changePassword(oldPwd, newPwd);
 			System.out.println("\n비밀번호가 변경되었습니다.\n");
 		} else
