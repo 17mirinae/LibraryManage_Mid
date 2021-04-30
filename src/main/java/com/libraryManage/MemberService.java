@@ -14,7 +14,7 @@ public class MemberService {
 		this.memberDAO = memberDao;
 	}
 
-	public void regist() { // 회원가입
+	public void registMem() { // 회원가입
 		MemberRequest req = new MemberRequest();
 
 		System.out.print("이메일 : ");
@@ -51,7 +51,7 @@ public class MemberService {
 		}
 	}
 
-	public void login() { // 로그인
+	public void loginMem() { // 로그인
 		MemberRequest req = new MemberRequest();
 
 		System.out.print("이메일 : ");
@@ -73,7 +73,7 @@ public class MemberService {
 		}
 	}
 
-	public void update() { // 회원 수정
+	public void updateMem() { // 회원 수정
 		MemberRequest req = new MemberRequest();
 
 		System.out.print("현재 이메일 : ");

@@ -14,5 +14,6 @@ public class FileOutputter {
 	public static void main(String[] args) throws Exception {
 		output("HI HELLO", "book_data.data");
 		output("HI HEY", "member_data.data");
+		output("HIHI", "library_data.data");
 	}
 }

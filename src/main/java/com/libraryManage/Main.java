@@ -38,15 +38,15 @@ public class Main {
 			switch (inputMenu) {
 			case 1:
 				System.out.println("회원가입을 수행합니다.");
-				MemSvc.regist();
+				MemSvc.registMem();
 				break;
 			case 2:
 				System.out.println("로그인을 수행합니다.");
-				MemSvc.login();
+				MemSvc.loginMem();
 				break;
 			case 3:
 				System.out.println("비밀번호를 수정합니다.");
-				MemSvc.update();
+				MemSvc.updateMem();
 				break;
 			case 4:
 				System.out.println("책을 추가합니다.");
