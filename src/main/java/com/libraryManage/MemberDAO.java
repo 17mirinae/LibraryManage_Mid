@@ -20,9 +20,12 @@ public class MemberDAO {
 	public void update(Member member) {
 		map.put(member.getMemEmail(), member);
 	}
+	
+	public void delete(Member member) {
+		map.remove(member.getMemEmail(), member);
+	}
 
 	public Collection<Member> selectAll() {
 		return map.values();
 	}
-
 }

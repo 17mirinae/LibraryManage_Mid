@@ -23,7 +23,7 @@ public class MemberService {
 
 		System.out.print("비밀번호 : ");
 		String inputPwd = sc.nextLine();
-		req.setMemPassword(inputPwd);
+		req.setMemPwd(inputPwd);
 
 		System.out.print("비밀번호 확인 : ");
 		String inputConfirmPwd = sc.nextLine();
@@ -35,7 +35,7 @@ public class MemberService {
 
 		System.out.print("연락처 (010-1234-5678) : ");
 		String inputPhone = sc.nextLine();
-		req.setMemPassword(inputPhone);
+		req.setMemPhone(inputPhone);
 
 		Member member = memberDAO.selectByEmail(req.getMemEmail());
 
@@ -60,7 +60,7 @@ public class MemberService {
 
 		System.out.print("비밀번호 : ");
 		String inputPwd = sc.nextLine();
-		req.setMemPassword(inputPwd);
+		req.setMemPwd(inputPwd);
 
 		Member member = memberDAO.selectByEmail(req.getMemEmail());
 
@@ -71,5 +71,32 @@ public class MemberService {
 		} else {
 			System.out.println("로그인 성공");
 		}
+	}
+
+	public void update() { // 회원 수정
+		MemberRequest req = new MemberRequest();
+
+		System.out.print("현재 이메일 : ");
+		String memEmail = sc.nextLine();
+		req.setMemEmail(memEmail);
+
+		System.out.print("현재 비밀번호 : ");
+		String oldPwd = sc.nextLine();
+
+		System.out.print("새 비밀번호 : ");
+		String newPwd = sc.nextLine();
+		req.setMemPwd(newPwd);
+
+		System.out.print("새 비밀번호 확인 : ");
+		String newConfirmPwd = sc.nextLine();
+		req.setMemConfirmPwd(newConfirmPwd);
+
+		Member member = memberDAO.selectByEmail(req.getMemEmail());
+
+		if (req.isPwdEqualToConfirmPwd()) { // 확인할 비밀번호와 입력한 비밀번호가 같을 시
+			member.changePassword(oldPwd, newPwd);
+			System.out.println("\n비밀번호가 변경되었습니다.\n");
+		} else
+			System.out.println("\n입력 정보를 확인하세요.\n");
 	}
 }

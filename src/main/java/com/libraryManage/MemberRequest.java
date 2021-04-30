@@ -20,7 +20,7 @@ public class MemberRequest {
 		return memPwd;
 	}
 
-	public void setMemPassword(String memPwd) {
+	public void setMemPwd(String memPwd) {
 		this.memPwd = memPwd;
 	}
 
