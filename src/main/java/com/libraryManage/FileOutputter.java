@@ -2,7 +2,7 @@ package com.libraryManage;
 
 import java.io.*;
 
-public class FileOutputter {
+public class FileOutputter implements Serializable {
 	private static String filePath = "./src/main/resources/";
 	
 	public static void output(String message, String fileName) throws IOException {

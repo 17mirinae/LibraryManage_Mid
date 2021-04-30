@@ -39,7 +39,7 @@ public class BookService {
 			System.out.println("같은 일련번호를 가진 책이 있습니다.");
 		} else {
 			Book newBook = new Book(req.getBookId(), req.getBookTitle(), req.getBookAuthor(), req.getBookPublisher());
-			bookDAO.insert(newBook);
+			bookDAO.insertBook(newBook);
 			System.out.println("\n책 추가 성공\n");
 		}
 	}
@@ -56,8 +56,11 @@ public class BookService {
 		if (book == null) {
 			System.out.println("삭제할 책이 존재하지 않습니다.");
 		} else {
-			bookDAO.delete(book);
+			bookDAO.deleteBook(book);
 			System.out.println("\n책 삭제 성공\n");
 		}
+	}
+	
+	public void updateBook() { // 책 정보 수정
 	}
 }
