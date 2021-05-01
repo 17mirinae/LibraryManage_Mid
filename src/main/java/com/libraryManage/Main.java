@@ -5,8 +5,6 @@ import java.util.*;
 import org.springframework.context.*;
 import org.springframework.context.support.*;
 
-import temp.MemberInfoPrinter;
-
 public class Main {
 	public static Scanner sc = new Scanner(System.in);
 

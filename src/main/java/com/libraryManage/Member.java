@@ -85,7 +85,7 @@ public class Member implements Serializable {
 	}
 
 	public String toString() {
-		return "" + getMemEmail() + "\t\t" + getMemPwd() + "\t\t" + getMemName() + "\t\t" + getMemPhone() + "\t\t"
-				+ getMemAddr();
+		return "사용자 이메일: " + getMemEmail() + "\t\t사용자 비밀번호: " + getMemPwd() + "\t\t사용자 이름: " + getMemName()
+				+ "\t\t사용자 연락처: " + getMemPhone() + "\t\t사용자 주소: " + getMemAddr();
 	}
 }

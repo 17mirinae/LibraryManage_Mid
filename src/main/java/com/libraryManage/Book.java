@@ -78,7 +78,7 @@ public class Book implements Serializable {
 	}
 
 	public String toString() {
-		return "" + getBookId() + "\t\t" + getBookTitle() + "\t\t" + getBookAuthor() + "\t\t" + getBookPublisher()
-				+ "\t\t" + isLended() + "\t\t" + getBookEmail();
+		return "책 번호: " + getBookId() + "\t\t책 제목: " + getBookTitle() + "\t\t책 저자: " + getBookAuthor() + "\t\t책 출판사: "
+				+ getBookPublisher() + "\t\t대여 여부: " + isLended() + "\t\t책을 빌린 사람: " + getBookEmail();
 	}
 }
