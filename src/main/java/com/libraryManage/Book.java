@@ -1,6 +1,8 @@
 package com.libraryManage;
 
-public class Book {
+import java.io.*;
+
+public class Book implements Serializable {
 	private String bookId; // 책 ISBN
 	private String bookTitle; // 책 제목
 	private String bookAuthor; // 책 저자

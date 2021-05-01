@@ -6,7 +6,7 @@ import java.util.*;
 public class BookDAO implements Serializable {
 	private Map<String, Book> map = new HashMap<>();
 	private String filePath = "./src/main/resources/book_data.dat";
-	
+
 	public Book selectById(String bookId) { // 일련번호로 검색
 		return map.get(bookId);
 	}
@@ -17,12 +17,12 @@ public class BookDAO implements Serializable {
 
 	public void insertBook(Book book) {
 		map.put(book.getBookId(), book);
-		exportToFile(map);
+		exportToFile();
+		importFromFile();
 	}
 
 	public void updateBook(Book book) {
 		map.replace(book.getBookId(), book);
-		exportToFile(map);
 	}
 
 	public void deleteBook(Book book) {
@@ -30,43 +30,49 @@ public class BookDAO implements Serializable {
 	}
 
 	public Collection<Book> selectAll() {
-		importFromFile();
 		return map.values();
 	}
 
-	public void exportToFile(Map<String, Book> map) {
-		ObjectOutputStream oos;
-
+	public void exportToFile() {
 		try {
-			oos = new ObjectOutputStream(new FileOutputStream(filePath));
+			FileOutputStream fileStream = new FileOutputStream(filePath);
+			ObjectOutputStream objOutputStream = new ObjectOutputStream(fileStream);
 
-			oos.writeObject(map);
-
-			oos.close();
+			objOutputStream.writeObject(this.map);
+			
+			fileStream.close();
+			objOutputStream.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			System.out.println("\n파일이 없습니다.\n");
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public Map<String, Book> importFromFile() {
-		ObjectInputStream ois;
-
 		try {
-			ois = new ObjectInputStream(new FileInputStream(filePath));
+			FileInputStream fileStream = new FileInputStream(filePath);
+			ObjectInputStream objInputStream = new ObjectInputStream(fileStream);
 
-			this.map = (HashMap<String, Book>) ois.readObject();
+			HashMap<String, Book> objFromFile = (HashMap<String, Book>) objInputStream.readObject();
+			objInputStream.close();
 
-			ois.close();
+			this.map = objFromFile;
+
+			Iterator<String> it = map.keySet().iterator();
+
+			while (it.hasNext()) { // 맵 키가 존재할 경우
+				String key = it.next();
+				Book value = (Book) map.get(key); // 키에 해당되는 객체 꺼내옴
+				System.out.println(key + "-> " + value.getBookTitle());
+			}
 		} catch (FileNotFoundException e) {
-			System.out.println("파일이 존재하지 않습니다.");
-			e.printStackTrace();
-		} catch (IOException e) {
+			System.out.println("\n파일이 없습니다.\n");
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
