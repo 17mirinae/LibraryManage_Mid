@@ -20,8 +20,6 @@ public class BookDAO implements Serializable {
 			if (bookTitleFromMap.equals(bookTitle)) {
 				bookSearched.add(element.getValue());
 			}
-			// Member valueFromMap = element.getValue();
-			// System.out.println(valueFromMap.toString());
 		}
 
 		return bookSearched;
@@ -31,21 +29,18 @@ public class BookDAO implements Serializable {
 		importFromFile();
 		map.put(book.getBookId(), book);
 		exportToFile();
-		importFromFile();
 	}
 
 	public void updateBook(Book book) {
 		importFromFile();
 		map.replace(book.getBookId(), book);
 		exportToFile();
-		importFromFile();
 	}
 
 	public void deleteBook(Book book) {
 		importFromFile();
 		map.remove(book.getBookId());
 		exportToFile();
-		importFromFile();
 	}
 
 	public void showAll() {

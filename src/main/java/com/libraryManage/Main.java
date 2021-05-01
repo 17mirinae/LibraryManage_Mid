@@ -31,12 +31,12 @@ public class Main {
 
 		switch (inputMenu) {
 		case 1:
-			System.out.println("회원가입을 수행합니다.");
+			System.out.println("\n회원가입을 수행합니다.\n");
 			MemSvc.registMem();
 			mainMenu(MemSvc, BookSvc, LibSvc);
 			break;
 		case 2:
-			System.out.println("로그인을 수행합니다.");
+			System.out.println("\n로그인을 수행합니다.\n");
 			Member member = MemSvc.loginMem();
 
 			if (member != null) {
@@ -47,11 +47,49 @@ public class Main {
 			} else {
 				System.out.println("\n로그인 실패\n");
 			}
+
 			mainMenu(MemSvc, BookSvc, LibSvc);
 			break;
 		default:
-			System.out.println("종료합니다.");
+			System.out.println("\n종료합니다.\n");
 			return;
+		}
+	}
+
+	public static void afterAdminLogin(MemberService MemSvc, BookService BookSvc, LibraryService LibSvc) {
+		System.out.println("\n----도서관-----");
+		System.out.println("1. 도서 검색");
+		System.out.println("2. 도서 추가");
+		System.out.println("3. 도서 수정");
+		System.out.println("4. 도서 삭제");
+		System.out.println("5. 회원 관리");
+		System.out.println("그 외. 로그아웃");
+		System.out.print("입력: ");
+		int inputMenu = sc.nextInt();
+
+		switch (inputMenu) {
+		case 1:
+			System.out.println("\n도서를 검색합니다.\n");
+			LibSvc.searchBook();
+			break;
+		case 2:
+			System.out.println("\n도서를 추가합니다.\n");
+			BookSvc.addBook();
+			break;
+		case 3:
+			System.out.println("\n도서 정보를 수정합니다.\n");
+			BookSvc.updateBook();
+			break;
+		case 4:
+			System.out.println("\n도서 정보를 삭제합니다.\n");
+			BookSvc.deleteBook();
+			break;
+		case 5:
+			System.out.println("\n회원 관리를 시작합니다.\n");
+			break;
+		default:
+			System.out.println("\n로그아웃합니다.\n");
+			break;
 		}
 	}
 
@@ -69,60 +107,28 @@ public class Main {
 
 		switch (inputMenu) {
 		case 1:
-			System.out.println("비밀번호를 변경합니다.");
+			System.out.println("\n비밀번호를 변경합니다.\n");
 			MemSvc.updateMem(member);
 			break;
 		case 2:
-			System.out.println("도서 정보를 검색합니다.");
+			System.out.println("\n도서 정보를 검색합니다.\n");
 			LibSvc.searchBook();
 			break;
 		case 3:
-			System.out.println("도서를 대여합니다.");
+			System.out.println("\n도서를 대여합니다.\n");
 			LibSvc.lendBook(MemSvc, BookSvc, member);
 			break;
 		case 4:
-			System.out.println("도서를 반납합니다.");
+			System.out.println("\n도서를 반납합니다.\n");
 			LibSvc.returnBook(MemSvc, BookSvc, member);
 			break;
 		default:
-			System.out.println("로그아웃합니다.");
+			System.out.println("\n로그아웃합니다.\n");
 			break;
 		}
 	}
 
-	public static void afterAdminLogin(MemberService MemSvc, BookService BookSvc, LibraryService LibSvc) {
-		System.out.println("\n----도서관-----\n");
-		System.out.println("1. 도서 검색");
-		System.out.println("2. 도서 추가");
-		System.out.println("3. 도서 수정");
-		System.out.println("4. 도서 삭제");
-		System.out.println("5. 회원 관리");
-		System.out.print("입력: ");
-		int inputMenu = sc.nextInt();
+	public static void manageMember(MemberService MemSvc, BookService BookService, LibraryService LibSvc) {
 
-		switch (inputMenu) {
-		case 1:
-			System.out.println("도서를 검색합니다.");
-			LibSvc.searchBook();
-			break;
-		case 2:
-			System.out.println("도서를 추가합니다.");
-			BookSvc.addBook();
-			break;
-		case 3:
-			System.out.println("도서 정보를 수정합니다.");
-			BookSvc.updateBook();
-			break;
-		case 4:
-			System.out.println("도서 정보를 삭제합니다.");
-			BookSvc.deleteBook();
-			break;
-		case 5:
-			System.out.println("회원 관리를 시작합니다.");
-			break;
-		default:
-			System.out.println("로그아웃합니다.");
-			break;
-		}
 	}
 }

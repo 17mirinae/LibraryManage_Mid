@@ -13,7 +13,7 @@ public class BookService {
 		this.bookDAO = _bookDAO;
 	}
 
-	public void showAll() { // 책 검색
+	public void showAll() { // 책 모두 출력
 		bookDAO.showAll();
 	}
 

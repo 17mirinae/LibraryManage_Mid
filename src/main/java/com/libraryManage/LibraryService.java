@@ -97,6 +97,7 @@ public class LibraryService {
 	}
 
 	public void searchBook() {
+		System.out.print("도서 제목 입력: ");
 		String searchBookTitle = sc.nextLine();
 
 		List<Book> bookList = bookDAO.selectByTitle(searchBookTitle);
