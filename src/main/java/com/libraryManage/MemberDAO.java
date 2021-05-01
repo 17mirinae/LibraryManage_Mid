@@ -19,17 +19,24 @@ public class MemberDAO {
 
 	public void insert(Member member) {
 		// member.setMemId(++nextId);
+		importFromFile();
 		map.put(member.getMemEmail(), member);
 		exportToFile();
 		importFromFile();
 	}
 
 	public void update(Member member) {
-		map.put(member.getMemEmail(), member);
+		importFromFile();
+		map.replace(member.getMemEmail(), member);
+		exportToFile();
+		importFromFile();
 	}
 
 	public void delete(Member member) {
+		importFromFile();
 		map.remove(member.getMemEmail(), member);
+		exportToFile();
+		importFromFile();
 	}
 
 	public Collection<Member> selectAll() {
@@ -68,7 +75,7 @@ public class MemberDAO {
 			while (it.hasNext()) { // 맵 키가 존재할 경우
 				String key = it.next();
 				Member value = (Member) map.get(key); // 키에 해당되는 객체 꺼내옴
-				System.out.println(key + "-> " + value.getMemName());
+				System.out.println(key + "-> " + value.getMemPwd());
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("\n파일이 없습니다.\n");

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class MemberService {
 	Scanner sc = new Scanner(System.in);
-
+	
 	private MemberDAO memberDAO;
 
 	@Autowired
@@ -51,7 +51,7 @@ public class MemberService {
 		}
 	}
 
-	public void loginMem() { // 로그인
+	public Member loginMem() { // 로그인
 		MemberRequest req = new MemberRequest();
 
 		System.out.print("이메일 : ");
@@ -66,17 +66,25 @@ public class MemberService {
 
 		if (member == null) {
 			System.out.println("입력 정보를 확인하세요.");
+			return null;
 		} else if (!member.getMemPwd().equals(inputPwd)) { // 비밀번호 오류
 			System.out.println("입력 정보를 확인하세요.");
+			return null;
 		} else {
-			System.out.println("로그인 성공");
+			if (member.getMemEmail().equals("admin")) {
+				System.out.println("관리자 로그인 성공");
+			} else {
+				System.out.println("사용자 로그인 성공");
+			}
 		}
+		
+		return member;
 	}
 
 	public void updateMem(Member member) { // 회원 수정
 		MemberRequest req = new MemberRequest();
 		req.setMemEmail(member.getMemEmail());
-		
+
 		System.out.print("현재 비밀번호 : ");
 		String oldPwd = sc.nextLine();
 
@@ -94,6 +102,7 @@ public class MemberService {
 			System.out.println("\n계정이 존재하지 않습니다.\n");
 		} else if (req.isPwdEqualToConfirmPwd() && member.getMemPwd().equals(oldPwd)) { // 확인할 비밀번호와 입력한 비밀번호가 같을 시
 			member.changePassword(oldPwd, newPwd);
+			memberDAO.update(member);
 			System.out.println("\n비밀번호가 변경되었습니다.\n");
 		} else
 			System.out.println("\n입력 정보를 확인하세요.\n");
