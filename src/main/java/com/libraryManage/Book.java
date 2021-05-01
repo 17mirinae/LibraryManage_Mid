@@ -50,4 +50,9 @@ public class Book implements Serializable {
 	public void setLended(boolean isLended) {
 		this.isLended = isLended;
 	}
+
+	public String toString() {
+		return "" + getBookId() + "\t\t" + getBookTitle() + "\t\t" + getBookAuthor() + "\t\t" + getBookPublisher()
+				+ "\t\t" + isLended();
+	}
 }

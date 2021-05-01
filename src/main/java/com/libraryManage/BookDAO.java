@@ -6,7 +6,7 @@ import java.util.*;
 public class BookDAO implements Serializable {
 	private Map<String, Book> map = new HashMap<>();
 	private String filePath = "./src/main/resources/book_data.dat";
-	
+
 	public Book selectById(String bookId) { // 일련번호로 검색
 		return map.get(bookId);
 	}
@@ -36,8 +36,15 @@ public class BookDAO implements Serializable {
 		importFromFile();
 	}
 
-	public Collection<Book> selectAll() {
-		return map.values();
+	public void showAll() {
+		System.out.println("책 일련번호\t\t책 제목\t\t책 저자\t\t책 출판사\t\t대여 여부");
+		System.out.println("----------------------------------------------------------------------------");
+
+		for (Map.Entry<String, Book> element : map.entrySet()) {
+			String bookIdFromMap = element.getKey();
+			Book valueFromMap = element.getValue();
+			System.out.println(valueFromMap.toString());
+		}
 	}
 
 	public void exportToFile() {
@@ -46,7 +53,7 @@ public class BookDAO implements Serializable {
 			ObjectOutputStream objOutputStream = new ObjectOutputStream(fileStream);
 
 			objOutputStream.writeObject(this.map);
-			
+
 			fileStream.close();
 			objOutputStream.close();
 		} catch (FileNotFoundException e) {

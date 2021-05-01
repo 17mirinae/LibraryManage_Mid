@@ -19,11 +19,12 @@ public class Main {
 		// MemberInfoPrinter.class);
 
 		BookService BookSvc = (BookService) ctx.getBean("BookSvc"); // 책 추가, 책 삭제
+		LibraryService LibSvc = (LibraryService) ctx.getBean("LibrarySvc"); // 책 대여, 반납
 
-		mainMenu(MemSvc, BookSvc);
+		mainMenu(MemSvc, BookSvc, LibSvc);
 	}
 
-	public static void mainMenu(MemberService MemSvc, BookService BookSvc) {
+	public static void mainMenu(MemberService MemSvc, BookService BookSvc, LibraryService LibSvc) {
 		System.out.println("\n-----도서관-----");
 		System.out.println("1. 회원가입");
 		System.out.println("2. 로그인");
@@ -35,7 +36,7 @@ public class Main {
 		case 1:
 			System.out.println("회원가입을 수행합니다.");
 			MemSvc.registMem();
-			mainMenu(MemSvc, BookSvc);
+			mainMenu(MemSvc, BookSvc, LibSvc);
 			break;
 		case 2:
 			System.out.println("로그인을 수행합니다.");
@@ -49,7 +50,7 @@ public class Main {
 			} else {
 				System.out.println("\n로그인 실패\n");
 			}
-			mainMenu(MemSvc, BookSvc);
+			mainMenu(MemSvc, BookSvc, LibSvc);
 			break;
 		default:
 			System.out.println("종료합니다.");
@@ -64,7 +65,7 @@ public class Main {
 		System.out.println("3. 도서 대여");
 		System.out.println("4. 도서 반납");
 		System.out.println("5. 대여 내역 조회");
-		System.out.println("6. 로그아웃");
+		System.out.println("그 외. 로그아웃");
 		System.out.print("입력: ");
 		int inputMenu = sc.nextInt();
 
@@ -75,7 +76,19 @@ public class Main {
 			break;
 		case 2:
 			System.out.println("도서 정보를 검색합니다.");
-			
+			BookSvc.showAll();
+			break;
+		case 3:
+			System.out.println("도서를 대여합니다.");
+			LibSvc.lendBook();
+			break;
+		case 4:
+			System.out.println("도서를 반납합니다.");
+			LibSvc.returnBook();
+			break;
+		default:
+			System.out.println("로그아웃합니다.");
+			break;
 		}
 	}
 
@@ -92,6 +105,7 @@ public class Main {
 		switch (inputMenu) {
 		case 1:
 			System.out.println("도서를 검색합니다.");
+			BookSvc.showAll();
 			break;
 		case 2:
 			System.out.println("도서를 추가합니다.");

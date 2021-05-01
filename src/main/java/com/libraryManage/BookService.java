@@ -13,10 +13,8 @@ public class BookService {
 		this.bookDAO = _bookDAO;
 	}
 
-	public void searchBook() { // 책 검색
-		String searchBookTitle = sc.nextLine();
-		
-		bookDAO.selectAll();
+	public void showAll() { // 책 검색
+		bookDAO.showAll();
 	}
 	
 	public void addBook() { // 책 추가
