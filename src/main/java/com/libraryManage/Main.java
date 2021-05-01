@@ -73,6 +73,9 @@ public class Main {
 			System.out.println("비밀번호를 변경합니다.");
 			MemSvc.updateMem(member);
 			break;
+		case 2:
+			System.out.println("도서 정보를 검색합니다.");
+			
 		}
 	}
 
