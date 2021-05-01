@@ -80,11 +80,11 @@ public class Main {
 			break;
 		case 3:
 			System.out.println("도서를 대여합니다.");
-			LibSvc.lendBook(MemSvc, BookSvc);
+			LibSvc.lendBook(MemSvc, BookSvc, member);
 			break;
 		case 4:
 			System.out.println("도서를 반납합니다.");
-			LibSvc.returnBook();
+			LibSvc.returnBook(MemSvc, BookSvc, member);
 			break;
 		default:
 			System.out.println("로그아웃합니다.");

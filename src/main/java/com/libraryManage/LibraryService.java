@@ -17,7 +17,7 @@ public class LibraryService {
 		this.memberDAO = _memberDAO;
 	}
 
-	public void lendBook(MemberService MemSvc, BookService BookSvc) {
+	public void lendBook(MemberService MemSvc, BookService BookSvc, Member member) {
 		searchBook();
 
 		System.out.println("대여하실 책의 일련번호를 입력해주세요.");
@@ -32,17 +32,16 @@ public class LibraryService {
 
 			switch (memChoice) {
 			case "Y":
-				System.out.print("이메일 입력: ");
-				String inputEmail = sc.nextLine();
-				Member member = memberDAO.selectByEmail(inputEmail);
+				System.out.print("비밀번호를 입력: ");
+				String inputPwd = sc.nextLine();
 
-				System.out.println(member.toString());
-
-				if (member != null) {
+				if (member.getMemPwd().equals(inputPwd)) {
 					book.setLended(false);
-					book.setBookEmail(inputEmail);
+					book.setBookEmail(member.getMemEmail());
 					bookDAO.exportToFile();
 					System.out.println("\n대여했습니다.\n");
+				} else {
+					System.out.println("\n비밀번호 오류\n대여하지 못했습니다.\n");
 				}
 				break;
 			case "N":
@@ -53,7 +52,11 @@ public class LibraryService {
 		}
 	}
 
-	public void returnBook() {
+	public void returnBook(MemberService MemSvc, BookService BookSvc, Member member) {
+		System.out.println("반납하실 도서의 일련번호를 입력해주세요.");
+		System.out.print("입력: ");
+		String inputBookId = sc.nextLine();
+		
 		
 	}
 
