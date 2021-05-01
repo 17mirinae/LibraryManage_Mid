@@ -34,13 +34,17 @@ public class MemberDAO {
 
 	public void delete(Member member) {
 		importFromFile();
-		map.remove(member.getMemEmail(), member);
+		map.remove(member.getMemEmail());
 		exportToFile();
 		importFromFile();
 	}
 
-	public Collection<Member> selectAll() {
-		return map.values();
+	public void showAll() {
+		for (Map.Entry<String, Member> element : map.entrySet()) {
+			String memberEmailFromMap = element.getKey();
+			Member valueFromMap = element.getValue();
+			System.out.println(valueFromMap.toString());
+		}
 	}
 
 	public void exportToFile() {

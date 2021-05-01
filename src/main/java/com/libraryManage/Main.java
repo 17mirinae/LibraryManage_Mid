@@ -14,12 +14,11 @@ public class Main {
 		ApplicationContext ctx = new GenericXmlApplicationContext("classpath:applicationContext.xml");
 
 		MemberService MemSvc = (MemberService) ctx.getBean("MemSvc"); // 회원가입, 로그인
+		BookService BookSvc = (BookService) ctx.getBean("BookSvc"); // 책 추가, 책 삭제
+		LibraryService LibSvc = (LibraryService) ctx.getBean("LibrarySvc"); // 책 대여, 반납
 
 		// MemberInfoPrinter infoPrinter = ctx.getBean("infoPrinter",
 		// MemberInfoPrinter.class);
-
-		BookService BookSvc = (BookService) ctx.getBean("BookSvc"); // 책 추가, 책 삭제
-		LibraryService LibSvc = (LibraryService) ctx.getBean("LibrarySvc"); // 책 대여, 반납
 
 		mainMenu(MemSvc, BookSvc, LibSvc);
 	}
@@ -44,9 +43,9 @@ public class Main {
 
 			if (member != null) {
 				if (member.getMemEmail().equals("admin"))
-					afterAdminLogin(MemSvc, BookSvc);
+					afterAdminLogin(MemSvc, BookSvc, LibSvc);
 				else
-					afterMemberLogin(MemSvc, BookSvc, member);
+					afterMemberLogin(MemSvc, BookSvc, LibSvc, member);
 			} else {
 				System.out.println("\n로그인 실패\n");
 			}
@@ -58,7 +57,8 @@ public class Main {
 		}
 	}
 
-	public static void afterMemberLogin(MemberService MemSvc, BookService BookSvc, Member member) {
+	public static void afterMemberLogin(MemberService MemSvc, BookService BookSvc, LibraryService LibSvc,
+			Member member) {
 		System.out.println("\n-----도서관-----");
 		System.out.println("1. 비밀번호 수정");
 		System.out.println("2. 도서 검색");
@@ -76,7 +76,7 @@ public class Main {
 			break;
 		case 2:
 			System.out.println("도서 정보를 검색합니다.");
-			BookSvc.showAll();
+			LibSvc.searchBook();
 			break;
 		case 3:
 			System.out.println("도서를 대여합니다.");
@@ -92,7 +92,7 @@ public class Main {
 		}
 	}
 
-	public static void afterAdminLogin(MemberService MemSvc, BookService BookSvc) {
+	public static void afterAdminLogin(MemberService MemSvc, BookService BookSvc, LibraryService LibSvc) {
 		System.out.println("\n----도서관-----\n");
 		System.out.println("1. 도서 검색");
 		System.out.println("2. 도서 추가");
@@ -105,7 +105,7 @@ public class Main {
 		switch (inputMenu) {
 		case 1:
 			System.out.println("도서를 검색합니다.");
-			BookSvc.showAll();
+			LibSvc.searchBook();
 			break;
 		case 2:
 			System.out.println("도서를 추가합니다.");
@@ -113,6 +113,7 @@ public class Main {
 			break;
 		case 3:
 			System.out.println("도서 정보를 수정합니다.");
+			BookSvc.updateBook();
 			break;
 		case 4:
 			System.out.println("도서 정보를 삭제합니다.");

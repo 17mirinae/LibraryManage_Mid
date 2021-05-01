@@ -102,7 +102,7 @@ public class MemberService {
 			System.out.println("\n계정이 존재하지 않습니다.\n");
 		} else if (req.isPwdEqualToConfirmPwd() && member.getMemPwd().equals(oldPwd)) { // 확인할 비밀번호와 입력한 비밀번호가 같을 시
 			member.changePassword(oldPwd, newPwd);
-			memberDAO.update(member);
+			memberDAO.delete(member);
 			System.out.println("\n비밀번호가 변경되었습니다.\n");
 		} else
 			System.out.println("\n입력 정보를 확인하세요.\n");

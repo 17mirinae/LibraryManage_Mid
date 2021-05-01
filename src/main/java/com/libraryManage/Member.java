@@ -4,7 +4,6 @@ import java.util.*;
 import java.io.*;
 
 public class Member implements Serializable {
-
 	// private Long memId; // 사용자 번호
 	private String memEmail; // 사용자 이메일
 	private String memPwd; // 사용자 비밀번호
@@ -59,5 +58,10 @@ public class Member implements Serializable {
 			System.out.println("입력 정보를 확인하세요.");
 		else
 			this.memPwd = newPassword;
+	}
+
+	public String toString() {
+		return "" + getMemEmail() + "\t\t" + getMemPwd() + "\t\t" + getMemName() + "\t\t" + getMemPhone() + "\t\t"
+				+ getMemAddr();
 	}
 }

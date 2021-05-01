@@ -31,7 +31,7 @@ public class BookDAO implements Serializable {
 
 	public void deleteBook(Book book) {
 		importFromFile();
-		map.remove(book.getBookId(), book);
+		map.remove(book.getBookId());
 		exportToFile();
 		importFromFile();
 	}
