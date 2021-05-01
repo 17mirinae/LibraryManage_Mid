@@ -18,6 +18,10 @@ public class MemberDAO {
 		return map.get(email);
 	}
 
+	public void addToBookList(String memEmail, Book book) {
+		
+	}
+
 	public void insert(Member member) {
 		// member.setMemId(++nextId);
 		importFromFile();

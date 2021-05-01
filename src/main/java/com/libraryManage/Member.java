@@ -11,6 +11,7 @@ public class Member implements Serializable {
 	private String memPhone; // 사용자 연락처
 	private String memAddr; // 사용자 주소
 	private Date registerDate; // 사용자 등록시간
+	private List<Book> memBook = new ArrayList<Book>(); // 대여한 도서 리스트
 
 	public Member(String _memEmail, String _memPwd, String _memName, String _memPhone, String _memAddr) {
 		this.memEmail = _memEmail;
@@ -33,24 +34,56 @@ public class Member implements Serializable {
 		return memEmail;
 	}
 
+	public void setMemEmail(String memEmail) {
+		this.memEmail = memEmail;
+	}
+
 	public String getMemPwd() {
 		return memPwd;
+	}
+
+	public void setMemPwd(String memPwd) {
+		this.memPwd = memPwd;
 	}
 
 	public String getMemName() {
 		return memName;
 	}
 
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
+
 	public String getMemPhone() {
 		return memPhone;
+	}
+
+	public void setMemPhone(String memPhone) {
+		this.memPhone = memPhone;
 	}
 
 	public String getMemAddr() {
 		return memAddr;
 	}
 
+	public void setMemAddr(String memAddr) {
+		this.memAddr = memAddr;
+	}
+
 	public Date getRegisterDate() {
 		return registerDate;
+	}
+
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
+	}
+
+	public List<Book> getMemBook() {
+		return memBook;
+	}
+
+	public void setMemBook(List<Book> memBook) {
+		this.memBook = memBook;
 	}
 
 	public void changePassword(String oldPassword, String newPassword) {

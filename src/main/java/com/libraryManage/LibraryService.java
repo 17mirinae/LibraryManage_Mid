@@ -39,6 +39,12 @@ public class LibraryService {
 					book.setLended(false);
 					book.setBookEmail(member.getMemEmail());
 					bookDAO.exportToFile();
+
+					List<Book> bookList = new ArrayList<Book>();
+
+					bookList.add(book);
+					member.setMemBook(bookList);
+					memberDAO.exportToFile();
 					System.out.println("\n대여했습니다.\n");
 				} else {
 					System.out.println("\n비밀번호 오류\n대여하지 못했습니다.\n");
@@ -56,8 +62,38 @@ public class LibraryService {
 		System.out.println("반납하실 도서의 일련번호를 입력해주세요.");
 		System.out.print("입력: ");
 		String inputBookId = sc.nextLine();
-		
-		
+
+		Book book = bookDAO.selectById(inputBookId);
+
+		if (book.getBookEmail().equals(member.getMemEmail())) { // 대여 중일 시
+			System.out.print("이 책을 반납하시겠습니까? (Y/N) ");
+			String memChoice = sc.nextLine();
+
+			switch (memChoice) {
+			case "Y":
+				System.out.print("비밀번호를 입력: ");
+				String inputPwd = sc.nextLine();
+
+				if (member.getMemPwd().equals(inputPwd)) {
+					book.setLended(true);
+					book.setBookEmail(null);
+					bookDAO.exportToFile();
+
+					List<Book> bookList = new ArrayList<Book>();
+					bookList = member.getMemBook();
+					bookList.remove(book);
+					memberDAO.exportToFile();
+					System.out.println("\n반납했습니다.\n");
+				} else {
+					System.out.println("\n비밀번호 오류\n반납하지 못했습니다.\n");
+				}
+				break;
+			case "N":
+				break;
+			}
+		} else { // 대여 중이 아닐 시
+			System.out.println("\n반납할 수 없는 책입니다.\n");
+		}
 	}
 
 	public void searchBook() {
