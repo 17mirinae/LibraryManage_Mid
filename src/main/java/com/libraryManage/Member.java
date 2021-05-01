@@ -1,10 +1,11 @@
 package com.libraryManage;
 
-import java.util.Date;
+import java.util.*;
+import java.io.*;
 
-public class Member {
+public class Member implements Serializable {
 
-	private Long memId; // 사용자 번호
+	// private Long memId; // 사용자 번호
 	private String memEmail; // 사용자 이메일
 	private String memPwd; // 사용자 비밀번호
 	private String memName; // 사용자 이름
@@ -21,13 +22,13 @@ public class Member {
 		this.registerDate = new Date();
 	}
 
-	public Long getMemId() {
-		return memId;
-	}
-
-	public void setMemId(Long memId) {
-		this.memId = memId;
-	}
+//	public Long getMemId() {
+//		return memId;
+//	}
+//
+//	public void setMemId(Long memId) {
+//		this.memId = memId;
+//	}
 
 	public String getMemEmail() {
 		return memEmail;
