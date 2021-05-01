@@ -45,6 +45,8 @@ public class MemberService {
 			memberDAO.insertMem(newMember);
 			System.out.println("\n회원가입이 완료되었습니다.\n");
 		}
+
+		memberDAO.showAll();
 	}
 
 	public Member loginMem() { // 로그인
@@ -57,16 +59,16 @@ public class MemberService {
 		Member member = memberDAO.selectByEmail(inputEmail);
 
 		if (member == null) {
-			System.out.println("입력 정보를 확인하세요.");
+			System.out.println("\n입력 정보를 확인하세요.\n");
 			return null;
 		} else if (!member.getMemPwd().equals(inputPwd)) { // 비밀번호 오류
-			System.out.println("입력 정보를 확인하세요.");
+			System.out.println("\n입력 정보를 확인하세요.\n");
 			return null;
 		} else {
 			if (member.getMemEmail().equals("admin")) {
-				System.out.println("관리자 로그인 성공");
+				System.out.println("\n관리자 로그인 성공\n");
 			} else {
-				System.out.println("사용자 로그인 성공");
+				System.out.println("\n사용자 로그인 성공\n");
 			}
 		}
 
@@ -94,5 +96,7 @@ public class MemberService {
 			System.out.println("\n비밀번호가 변경되었습니다.\n");
 		} else
 			System.out.println("\n입력 정보를 확인하세요.\n");
+
+		memberDAO.showAll();
 	}
 }
