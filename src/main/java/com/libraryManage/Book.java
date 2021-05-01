@@ -79,6 +79,6 @@ public class Book implements Serializable {
 
 	public String toString() {
 		return "" + getBookId() + "\t\t" + getBookTitle() + "\t\t" + getBookAuthor() + "\t\t" + getBookPublisher()
-				+ "\t\t" + isLended();
+				+ "\t\t" + isLended() + "\t\t" + getBookEmail();
 	}
 }

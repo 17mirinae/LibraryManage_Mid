@@ -80,7 +80,7 @@ public class Main {
 			break;
 		case 3:
 			System.out.println("도서를 대여합니다.");
-			LibSvc.lendBook();
+			LibSvc.lendBook(MemSvc, BookSvc);
 			break;
 		case 4:
 			System.out.println("도서를 반납합니다.");

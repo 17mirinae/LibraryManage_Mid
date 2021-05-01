@@ -11,8 +11,20 @@ public class BookDAO implements Serializable {
 		return map.get(bookId);
 	}
 
-	public Book selectByTitle(String bookTitle) { // 책 이름으로 검색
-		return map.get(bookTitle);
+	public List<Book> selectByTitle(String bookTitle) { // 책 이름으로 검색
+		List<Book> bookSearched = new ArrayList<Book>();
+		importFromFile(); // 현재 this.map 에 파일에서 가져온 데이터를 넣어놨음
+
+		for (Map.Entry<String, Book> element : map.entrySet()) {
+			String bookTitleFromMap = element.getValue().getBookTitle(); // 책 제목
+			if (bookTitleFromMap.equals(bookTitle)) {
+				bookSearched.add(element.getValue());
+			}
+			// Member valueFromMap = element.getValue();
+			// System.out.println(valueFromMap.toString());
+		}
+
+		return bookSearched;
 	}
 
 	public void insertBook(Book book) {

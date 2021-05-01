@@ -14,6 +14,7 @@ public class MemberDAO {
 	private String filePath = "./src/main/resources/member_data.dat";
 
 	public Member selectByEmail(String email) {
+		importFromFile();
 		return map.get(email);
 	}
 
