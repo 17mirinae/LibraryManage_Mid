@@ -16,6 +16,12 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 		<constructor-arg ref="bookDAO" />
 	</bean>
 
+	<bean id="libraryDAO" class="com.libraryManage.LibraryDAO" />
+
+	<bean id="LibrarySvc" class="com.libraryManage.LibraryService">
+		<constructor-arg ref="libraryDAO" />
+	</bean>
+
 	<!-- <bean id="memberPrinter" class="com.libraryManage.MemberPrinter" /> 
 		<bean id="infoPrinter" class="com.libraryManage.MemberInfoPrinter"> <property 
 		name="memberDAO" ref="memberDAO" /> <property name="printer" ref="memberPrinter" 

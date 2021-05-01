@@ -1,8 +1,7 @@
 package com.libraryManage;
 
 import java.util.*;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.*;
 
 public class BookService {
 	Scanner sc = new Scanner(System.in);
@@ -14,6 +13,12 @@ public class BookService {
 		this.bookDAO = _bookDAO;
 	}
 
+	public void searchBook() { // 책 검색
+		String searchBookTitle = sc.nextLine();
+		
+		bookDAO.selectAll();
+	}
+	
 	public void addBook() { // 책 추가
 		BookRequest req = new BookRequest();
 

@@ -6,7 +6,7 @@ import java.util.*;
 public class BookDAO implements Serializable {
 	private Map<String, Book> map = new HashMap<>();
 	private String filePath = "./src/main/resources/book_data.dat";
-
+	
 	public Book selectById(String bookId) { // 일련번호로 검색
 		return map.get(bookId);
 	}
@@ -16,17 +16,24 @@ public class BookDAO implements Serializable {
 	}
 
 	public void insertBook(Book book) {
+		importFromFile();
 		map.put(book.getBookId(), book);
 		exportToFile();
 		importFromFile();
 	}
 
 	public void updateBook(Book book) {
+		importFromFile();
 		map.replace(book.getBookId(), book);
+		exportToFile();
+		importFromFile();
 	}
 
 	public void deleteBook(Book book) {
+		importFromFile();
 		map.remove(book.getBookId(), book);
+		exportToFile();
+		importFromFile();
 	}
 
 	public Collection<Book> selectAll() {
