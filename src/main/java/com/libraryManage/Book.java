@@ -7,8 +7,8 @@ public class Book implements Serializable {
 	private String bookTitle; // 책 제목
 	private String bookAuthor; // 책 저자
 	private String bookPublisher; // 책 출판사
-	private int bookCount; // 책 재고수
 	private String bookEmail; // 빌린 사람
+	private int bookCount; // 책 재고수
 	private boolean isLended; // 책 대여여부
 
 	Book(String _bookId, String _bookTitle, String _bookAuthor, String _bookPublisher) {
