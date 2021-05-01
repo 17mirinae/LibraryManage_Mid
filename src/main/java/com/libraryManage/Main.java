@@ -71,21 +71,26 @@ public class Main {
 		case 1:
 			System.out.println("\n도서를 검색합니다.\n");
 			LibSvc.searchBook();
+			afterAdminLogin(MemSvc, BookSvc, LibSvc);
 			break;
 		case 2:
 			System.out.println("\n도서를 추가합니다.\n");
 			BookSvc.addBook();
+			afterAdminLogin(MemSvc, BookSvc, LibSvc);
 			break;
 		case 3:
 			System.out.println("\n도서 정보를 수정합니다.\n");
 			BookSvc.updateBook();
+			afterAdminLogin(MemSvc, BookSvc, LibSvc);
 			break;
 		case 4:
 			System.out.println("\n도서 정보를 삭제합니다.\n");
 			BookSvc.deleteBook();
+			afterAdminLogin(MemSvc, BookSvc, LibSvc);
 			break;
 		case 5:
 			System.out.println("\n회원 관리를 시작합니다.\n");
+			afterAdminLogin(MemSvc, BookSvc, LibSvc);
 			break;
 		default:
 			System.out.println("\n로그아웃합니다.\n");
@@ -109,18 +114,22 @@ public class Main {
 		case 1:
 			System.out.println("\n비밀번호를 변경합니다.\n");
 			MemSvc.updateMem(member);
+			afterMemberLogin(MemSvc, BookSvc, LibSvc, member);
 			break;
 		case 2:
 			System.out.println("\n도서 정보를 검색합니다.\n");
 			LibSvc.searchBook();
+			afterMemberLogin(MemSvc, BookSvc, LibSvc, member);
 			break;
 		case 3:
 			System.out.println("\n도서를 대여합니다.\n");
 			LibSvc.lendBook(MemSvc, BookSvc, member);
+			afterMemberLogin(MemSvc, BookSvc, LibSvc, member);
 			break;
 		case 4:
 			System.out.println("\n도서를 반납합니다.\n");
 			LibSvc.returnBook(MemSvc, BookSvc, member);
+			afterMemberLogin(MemSvc, BookSvc, LibSvc, member);
 			break;
 		default:
 			System.out.println("\n로그아웃합니다.\n");

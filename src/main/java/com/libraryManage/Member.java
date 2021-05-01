@@ -79,7 +79,7 @@ public class Member implements Serializable {
 
 	public void changePassword(String oldPassword, String newPassword) {
 		if (!memPwd.equals(oldPassword))
-			System.out.println("입력 정보를 확인하세요.");
+			System.out.println("\n입력 정보를 확인하세요.\n");
 		else
 			this.memPwd = newPassword;
 	}

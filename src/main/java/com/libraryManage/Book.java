@@ -3,7 +3,7 @@ package com.libraryManage;
 import java.io.*;
 
 public class Book implements Serializable {
-	private String bookId; // 책 ISBN
+	private String bookId; // 책 아이디
 	private String bookTitle; // 책 제목
 	private String bookAuthor; // 책 저자
 	private String bookPublisher; // 책 출판사
@@ -78,7 +78,14 @@ public class Book implements Serializable {
 	}
 
 	public String toString() {
+		String strLend = "";
+
+		if (this.isLended())
+			strLend = "대여가능";
+		else
+			strLend = "대여중";
+		
 		return "책 번호: " + getBookId() + "\t\t책 제목: " + getBookTitle() + "\t\t책 저자: " + getBookAuthor() + "\t\t책 출판사: "
-				+ getBookPublisher() + "\t\t대여 여부: " + isLended() + "\t\t책을 빌린 사람: " + getBookEmail();
+				+ getBookPublisher() + "\t\t대여 여부: " + strLend + "\t\t책을 빌린 사람: " + getBookEmail();
 	}
 }

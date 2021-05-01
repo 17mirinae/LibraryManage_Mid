@@ -7,7 +7,8 @@ public class BookDAO implements Serializable {
 	private Map<String, Book> map = new HashMap<>();
 	private String filePath = "./src/main/resources/book_data.dat";
 
-	public Book selectById(String bookId) { // 일련번호로 검색
+	public Book selectById(String bookId) { // 일련번호로 데이터 받아오기
+		importFromFile();
 		return map.get(bookId);
 	}
 
@@ -44,11 +45,11 @@ public class BookDAO implements Serializable {
 	}
 
 	public void showAll() {
-		System.out.println("책 일련번호\t\t책 제목\t\t책 저자\t\t책 출판사\t\t대여 여부");
-		System.out.println("----------------------------------------------------------------------------");
+		System.out.println("책 일련번호\t\t책 제목\t\t책 저자\t\t책 출판사\t\t대여 여부\t\t대여한 사람");
+		System.out.println("---------------------------------------------------------------------------------------");
 
 		for (Map.Entry<String, Book> element : map.entrySet()) {
-			String bookIdFromMap = element.getKey();
+			// String bookIdFromMap = element.getKey();
 			Book valueFromMap = element.getValue();
 			System.out.println(valueFromMap.toString());
 		}
@@ -86,7 +87,7 @@ public class BookDAO implements Serializable {
 			while (it.hasNext()) { // 맵 키가 존재할 경우
 				String key = it.next();
 				Book value = (Book) map.get(key); // 키에 해당되는 객체 꺼내옴
-				System.out.println(key + "-> " + value.getBookTitle());
+				// System.out.println(key + "-> " + value.toString());
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("\n파일이 없습니다.\n");

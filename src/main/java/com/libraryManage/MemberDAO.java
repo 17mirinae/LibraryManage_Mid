@@ -1,15 +1,9 @@
 package com.libraryManage;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.*;
 
 public class MemberDAO {
-	// private static long nextId = 0;
 	private Map<String, Member> map = new HashMap<>();
 	private String filePath = "./src/main/resources/member_data.dat";
 
@@ -22,31 +16,30 @@ public class MemberDAO {
 
 	}
 
-	public void insert(Member member) {
-		// member.setMemId(++nextId);
+	public void insertMem(Member member) {
 		importFromFile();
 		map.put(member.getMemEmail(), member);
 		exportToFile();
-		importFromFile();
 	}
 
-	public void update(Member member) {
+	public void updateMem(Member member) {
 		importFromFile();
 		map.replace(member.getMemEmail(), member);
 		exportToFile();
-		importFromFile();
 	}
 
-	public void delete(Member member) {
+	public void deleteMem(Member member) {
 		importFromFile();
 		map.remove(member.getMemEmail());
 		exportToFile();
-		importFromFile();
 	}
 
 	public void showAll() {
+		System.out.println("사용자 이메일\t\t사용자 비밀번호\t\t사용자 이름\t\t사용자 연락처\t\t사용자 주소\t\t사용자 등록시간");
+		System.out.println("---------------------------------------------------------------------------------------");
+
 		for (Map.Entry<String, Member> element : map.entrySet()) {
-			String memberEmailFromMap = element.getKey();
+			// String memberEmailFromMap = element.getKey();
 			Member valueFromMap = element.getValue();
 			System.out.println(valueFromMap.toString());
 		}
@@ -84,7 +77,7 @@ public class MemberDAO {
 			while (it.hasNext()) { // 맵 키가 존재할 경우
 				String key = it.next();
 				Member value = (Member) map.get(key); // 키에 해당되는 객체 꺼내옴
-				System.out.println(key + "-> " + value.getMemPwd());
+				// System.out.println(key + "-> " + value.toString());
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("\n파일이 없습니다.\n");

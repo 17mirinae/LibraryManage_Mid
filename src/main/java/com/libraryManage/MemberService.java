@@ -42,7 +42,7 @@ public class MemberService {
 			System.out.println("\n입력 정보를 확인하세요.\n");
 		} else {
 			Member newMember = new Member(inputEmail, inputPwd, inputName, inputPhone, inputAddr);
-			memberDAO.insert(newMember);
+			memberDAO.insertMem(newMember);
 			System.out.println("\n회원가입이 완료되었습니다.\n");
 		}
 	}
@@ -90,7 +90,7 @@ public class MemberService {
 		} else if (newPwd.equals(newConfirmPwd) && member.getMemPwd().equals(oldPwd)) {
 			// 확인할 비밀번호와 입력한 비밀번호가 같을 시
 			member.changePassword(oldPwd, newPwd);
-			memberDAO.update(member);
+			memberDAO.updateMem(member);
 			System.out.println("\n비밀번호가 변경되었습니다.\n");
 		} else
 			System.out.println("\n입력 정보를 확인하세요.\n");
