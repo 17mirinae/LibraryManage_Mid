@@ -24,9 +24,11 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 		<constructor-arg ref="memberDAO" />
 	</bean>
 
-	<!-- <bean id="memberPrinter" class="com.libraryManage.MemberPrinter" /> 
-		<bean id="infoPrinter" class="com.libraryManage.MemberInfoPrinter"> <property 
-		name="memberDAO" ref="memberDAO" /> <property name="printer" ref="memberPrinter" 
-		/> </bean> -->
+	<bean id="memberPrinter" class="com.libraryManage.MemberPrinter" />
+
+	<bean id="infoPrinter" class="com.libraryManage.MemberInfoPrinter">
+		<property name="memberDAO" ref="memberDAO" />
+		<property name="printer" ref="memberPrinter" />
+	</bean>
 
 </beans>

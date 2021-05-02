@@ -1,12 +1,6 @@
-package temp;
+package com.libraryManage;
 
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-
-import com.libraryManage.Member;
-import com.libraryManage.MemberDAO;
+import org.springframework.beans.factory.annotation.*;
 
 public class MemberInfoPrinter {
 
@@ -19,7 +13,6 @@ public class MemberInfoPrinter {
 	}
 
 	@Autowired
-	// @Qualifier("sysout")
 	public void setPrinter(MemberPrinter printer) {
 		System.out.println("setPrinter: " + printer);
 		this.printer = printer;
@@ -30,10 +23,13 @@ public class MemberInfoPrinter {
 
 		if (member == null) {
 			System.out.println("데이터 없음\n");
-			return;
+		} else {
+			printer.print(member);
 		}
-
-		printer.print(member);
 		System.out.println();
+	}
+
+	public void printAllMember() {
+		memDao.showAll();
 	}
 }

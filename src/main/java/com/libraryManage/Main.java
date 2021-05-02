@@ -15,13 +15,13 @@ public class Main {
 		BookService BookSvc = (BookService) ctx.getBean("BookSvc"); // 책 추가, 책 삭제
 		LibraryService LibSvc = (LibraryService) ctx.getBean("LibrarySvc"); // 책 대여, 반납
 
-		// MemberInfoPrinter infoPrinter = ctx.getBean("infoPrinter",
-		// MemberInfoPrinter.class);
+		MemberInfoPrinter infoPrinter = ctx.getBean("infoPrinter", MemberInfoPrinter.class);
 
-		mainMenu(MemSvc, BookSvc, LibSvc);
+		mainMenu(MemSvc, BookSvc, LibSvc, infoPrinter);
 	}
 
-	public static void mainMenu(MemberService MemSvc, BookService BookSvc, LibraryService LibSvc) {
+	public static void mainMenu(MemberService MemSvc, BookService BookSvc, LibraryService LibSvc,
+			MemberInfoPrinter infoPrinter) {
 		System.out.println("\n-----도서관-----");
 		System.out.println("1. 회원가입");
 		System.out.println("2. 로그인");
@@ -33,7 +33,7 @@ public class Main {
 		case 1:
 			System.out.println("\n회원가입을 수행합니다.\n");
 			MemSvc.registMem();
-			mainMenu(MemSvc, BookSvc, LibSvc);
+			mainMenu(MemSvc, BookSvc, LibSvc, infoPrinter);
 			break;
 		case 2:
 			System.out.println("\n로그인을 수행합니다.\n");
@@ -41,14 +41,14 @@ public class Main {
 
 			if (member != null) {
 				if (member.getMemEmail().equals("admin"))
-					afterAdminLogin(MemSvc, BookSvc, LibSvc);
+					afterAdminLogin(MemSvc, BookSvc, LibSvc, infoPrinter);
 				else
 					afterMemberLogin(MemSvc, BookSvc, LibSvc, member);
 			} else {
 				System.out.println("\n로그인 실패\n");
 			}
 
-			mainMenu(MemSvc, BookSvc, LibSvc);
+			mainMenu(MemSvc, BookSvc, LibSvc, infoPrinter);
 			break;
 		default:
 			System.out.println("\n종료합니다.\n");
@@ -56,7 +56,8 @@ public class Main {
 		}
 	}
 
-	public static void afterAdminLogin(MemberService MemSvc, BookService BookSvc, LibraryService LibSvc) {
+	public static void afterAdminLogin(MemberService MemSvc, BookService BookSvc, LibraryService LibSvc,
+			MemberInfoPrinter infoPrinter) {
 		System.out.println("\n----도서관-----");
 		System.out.println("1. 도서 검색");
 		System.out.println("2. 도서 추가");
@@ -71,26 +72,27 @@ public class Main {
 		case 1:
 			System.out.println("\n도서를 검색합니다.\n");
 			LibSvc.searchBook();
-			afterAdminLogin(MemSvc, BookSvc, LibSvc);
+			afterAdminLogin(MemSvc, BookSvc, LibSvc, infoPrinter);
 			break;
 		case 2:
 			System.out.println("\n도서를 추가합니다.\n");
 			BookSvc.addBook();
-			afterAdminLogin(MemSvc, BookSvc, LibSvc);
+			afterAdminLogin(MemSvc, BookSvc, LibSvc, infoPrinter);
 			break;
 		case 3:
 			System.out.println("\n도서 정보를 수정합니다.\n");
 			BookSvc.updateBook();
-			afterAdminLogin(MemSvc, BookSvc, LibSvc);
+			afterAdminLogin(MemSvc, BookSvc, LibSvc, infoPrinter);
 			break;
 		case 4:
 			System.out.println("\n도서 정보를 삭제합니다.\n");
 			BookSvc.deleteBook();
-			afterAdminLogin(MemSvc, BookSvc, LibSvc);
+			afterAdminLogin(MemSvc, BookSvc, LibSvc, infoPrinter);
 			break;
 		case 5:
 			System.out.println("\n회원 관리를 시작합니다.\n");
-			afterAdminLogin(MemSvc, BookSvc, LibSvc);
+			manageMember(MemSvc, BookSvc, LibSvc, infoPrinter);
+			afterAdminLogin(MemSvc, BookSvc, LibSvc, infoPrinter);
 			break;
 		default:
 			System.out.println("\n로그아웃합니다.\n");
@@ -137,7 +139,25 @@ public class Main {
 		}
 	}
 
-	public static void manageMember(MemberService MemSvc, BookService BookService, LibraryService LibSvc) {
+	public static void manageMember(MemberService MemSvc, BookService BookService, LibraryService LibSvc,
+			MemberInfoPrinter infoPrinter) {
+		System.out.println("\n-----회원 관리-----");
+		System.out.println("1. 회원 전체 조회");
+		System.out.println("그 외. 뒤로");
+		System.out.print("입력: ");
+		int inputMenu = sc.nextInt();
 
+		switch (inputMenu) {
+		case 1:
+			System.out.println("\n회원을 모두 출력합니다.");
+//			System.out.println("\n조회할 회원의 이메일을 입력하세요.");
+//			System.out.print("입력: ");
+//			String inputEmail = sc.nextLine();
+			infoPrinter.printAllMember();
+			break;
+		default:
+			System.out.println("\n회원관리를 종료합니다.");
+			break;
+		}
 	}
 }

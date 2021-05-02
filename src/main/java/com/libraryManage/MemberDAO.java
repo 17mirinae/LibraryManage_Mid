@@ -39,7 +39,6 @@ public class MemberDAO {
 		System.out.println("---------------------------------------------------------------------------------------");
 
 		for (Map.Entry<String, Member> element : map.entrySet()) {
-			// String memberEmailFromMap = element.getKey();
 			Member valueFromMap = element.getValue();
 			System.out.println(valueFromMap.toString());
 		}
@@ -77,7 +76,6 @@ public class MemberDAO {
 			while (it.hasNext()) { // 맵 키가 존재할 경우
 				String key = it.next();
 				Member value = (Member) map.get(key); // 키에 해당되는 객체 꺼내옴
-				// System.out.println(key + "-> " + value.toString());
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("\n파일이 없습니다.\n");
