@@ -12,8 +12,13 @@ public class MemberDAO {
 		return map.get(email);
 	}
 
-	public void addToBookList(String memEmail, Book book) {
-
+	public void printBookList(Member member) {
+		System.out.println("\n-----대여한 도서-----");
+		List<Book> bookList = member.getMemBook();
+		
+		for(Book book : bookList) {
+			System.out.println(book.toString());
+		}
 	}
 
 	public void insertMem(Member member) {

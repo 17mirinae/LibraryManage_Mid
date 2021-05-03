@@ -5,6 +5,14 @@ import java.util.*;
 import org.springframework.context.*;
 import org.springframework.context.support.*;
 
+//도서관리시스템+다중사용자
+//도서의 검색/대출/반납 + 예약
+//회원 생성/삭제/ 대출반납내역/ + 회원정보수정,예약내용
+
+//Book-id,제목,저자,출판사,재고수,대여여부
+//User-id,passwd,주소,연락처
+
+//booking-bookid,userid,시간
 public class Main {
 	public static Scanner sc = new Scanner(System.in);
 
@@ -143,6 +151,7 @@ public class Main {
 			MemberInfoPrinter infoPrinter) {
 		System.out.println("\n-----회원 관리-----");
 		System.out.println("1. 회원 전체 조회");
+		System.out.println("2. 회원 검색");
 		System.out.println("그 외. 뒤로");
 		System.out.print("입력: ");
 		int inputMenu = sc.nextInt();
@@ -150,11 +159,12 @@ public class Main {
 		switch (inputMenu) {
 		case 1:
 			System.out.println("\n회원을 모두 출력합니다.");
-//			System.out.println("\n조회할 회원의 이메일을 입력하세요.");
-//			System.out.print("입력: ");
-//			String inputEmail = sc.nextLine();
 			infoPrinter.printAllMember();
 			break;
+		case 2:
+			System.out.println("\n검색할 회원의 이메일을 입력해주세요.");
+			System.out.print("입력: ");
+			String inputEmail = sc.nextLine();
 		default:
 			System.out.println("\n회원관리를 종료합니다.");
 			break;

@@ -42,7 +42,7 @@ public class LibraryService {
 					book.setBookEmail(member.getMemEmail());
 					bookDAO.exportToFile();
 
-					List<Book> bookList = new ArrayList<Book>();
+					List<Book> bookList = member.getMemBook();
 
 					bookList.add(book);
 					member.setMemBook(bookList);
@@ -61,6 +61,8 @@ public class LibraryService {
 	}
 
 	public void returnBook(MemberService MemSvc, BookService BookSvc, Member member) {
+		memberDAO.printBookList(member);
+
 		System.out.println("\n반납하실 도서의 일련번호를 입력해주세요.");
 		System.out.print("입력: ");
 		String inputBookId = sc.nextLine();
@@ -80,14 +82,16 @@ public class LibraryService {
 				String inputPwd = sc.nextLine();
 
 				if (member.getMemPwd().equals(inputPwd)) {
+					List<Book> bookList = member.getMemBook();
+					
+					bookList.remove(book);
+					member.setMemBook(bookList);
+					memberDAO.printBookList(member);
+					memberDAO.exportToFile();
+
 					book.setLended(true);
 					book.setBookEmail(null);
 					bookDAO.exportToFile();
-
-					List<Book> bookList = new ArrayList<Book>();
-					bookList = member.getMemBook();
-					bookList.remove(book);
-					memberDAO.exportToFile();
 					System.out.println("\n반납했습니다.\n");
 				} else {
 					System.out.println("\n비밀번호 오류\n반납하지 못했습니다.\n");
@@ -97,6 +101,8 @@ public class LibraryService {
 		case "N":
 			break;
 		}
+
+		memberDAO.printBookList(member);
 
 	}
 
