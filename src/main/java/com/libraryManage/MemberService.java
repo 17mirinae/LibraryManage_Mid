@@ -99,4 +99,22 @@ public class MemberService {
 
 		memberDAO.showAll();
 	}
+
+	public void deleteMem() { // 회원 삭제
+		memberDAO.showAll();
+		
+		System.out.println("\n삭제할 회원의 이메일을 입력하세요.\n");
+		String inputEmail = sc.nextLine();
+
+		Member member = memberDAO.selectByEmail(inputEmail);
+
+		if (member == null) {
+			System.out.println("\n계정이 존재하지 않습니다.\n");
+		} else {
+			memberDAO.deleteMem(member);
+			System.out.println("\n회원이 삭제되었습니다.");
+		}
+
+		memberDAO.showAll();
+	}
 }

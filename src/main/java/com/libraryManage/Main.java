@@ -152,6 +152,7 @@ public class Main {
 		System.out.println("\n-----회원 관리-----");
 		System.out.println("1. 회원 전체 조회");
 		System.out.println("2. 회원 검색");
+		System.out.println("3. 회원 삭제");
 		System.out.println("그 외. 뒤로");
 		System.out.print("입력: ");
 		int inputMenu = sc.nextInt();
@@ -165,6 +166,11 @@ public class Main {
 			System.out.println("\n검색할 회원의 이메일을 입력해주세요.");
 			System.out.print("입력: ");
 			String inputEmail = sc.nextLine();
+			break;
+		case 3:
+			System.out.println("\n회원을 삭제합니다.");
+			MemSvc.deleteMem();
+			break;
 		default:
 			System.out.println("\n회원관리를 종료합니다.");
 			break;
