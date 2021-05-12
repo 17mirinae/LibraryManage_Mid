@@ -2,7 +2,7 @@ package com.libraryManage;
 
 import java.io.*;
 
-public class Book implements Serializable {
+public class BookDTO implements Serializable {
 	private String bookId; // 책 아이디
 	private String bookTitle; // 책 제목
 	private String bookAuthor; // 책 저자
@@ -11,7 +11,7 @@ public class Book implements Serializable {
 	private int bookCount; // 책 재고수
 	private boolean isLended; // 책 대여여부
 
-	Book(String _bookId, String _bookTitle, String _bookAuthor, String _bookPublisher) {
+	BookDTO(String _bookId, String _bookTitle, String _bookAuthor, String _bookPublisher) {
 		this.bookId = _bookId;
 		this.bookTitle = _bookTitle;
 		this.bookAuthor = _bookAuthor;
@@ -76,7 +76,7 @@ public class Book implements Serializable {
 	public void setLended(boolean isLended) {
 		this.isLended = isLended;
 	}
-
+	
 	public String toString() {
 		String strLend = "";
 
@@ -84,7 +84,7 @@ public class Book implements Serializable {
 			strLend = "대여가능";
 		else
 			strLend = "대여중";
-		
+
 		return "책 번호: " + getBookId() + "\t\t책 제목: " + getBookTitle() + "\t\t책 저자: " + getBookAuthor() + "\t\t책 출판사: "
 				+ getBookPublisher() + "\t\t대여 여부: " + strLend + "\t\t책을 빌린 사람: " + getBookEmail();
 	}

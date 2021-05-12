@@ -17,14 +17,14 @@ public class LibraryService {
 		this.memberDAO = _memberDAO;
 	}
 
-	public void lendBook(MemberService MemSvc, BookService BookSvc, Member member) {
+	public void lendBook(MemberService MemSvc, BookService BookSvc, MemberDTO member) {
 		searchBook();
 
 		System.out.println("\n대여하실 책의 일련번호를 입력해주세요.");
 		System.out.print("입력: ");
 		String lendBookId = sc.nextLine();
 
-		Book book = bookDAO.selectById(lendBookId);
+		BookDTO book = bookDAO.selectById(lendBookId);
 		System.out.println("\n-----검색된 결과 출력-----");
 		System.out.println(book.toString());
 
@@ -42,7 +42,7 @@ public class LibraryService {
 					book.setBookEmail(member.getMemEmail());
 					bookDAO.exportToFile();
 
-					List<Book> bookList = member.getMemBook();
+					List<BookDTO> bookList = member.getMemBook();
 
 					bookList.add(book);
 					member.setMemBook(bookList);
@@ -60,14 +60,14 @@ public class LibraryService {
 		}
 	}
 
-	public void returnBook(MemberService MemSvc, BookService BookSvc, Member member) {
+	public void returnBook(MemberService MemSvc, BookService BookSvc, MemberDTO member) {
 		memberDAO.printBookList(member);
 
 		System.out.println("\n반납하실 도서의 일련번호를 입력해주세요.");
 		System.out.print("입력: ");
 		String inputBookId = sc.nextLine();
 
-		Book book = bookDAO.selectById(inputBookId);
+		BookDTO book = bookDAO.selectById(inputBookId);
 		System.out.println("\n-----검색된 결과 출력-----");
 		System.out.println(book.toString());
 		System.out.print("\n이 책을 반납하시겠습니까? (Y/N) ");
@@ -82,7 +82,7 @@ public class LibraryService {
 				String inputPwd = sc.nextLine();
 
 				if (member.getMemPwd().equals(inputPwd)) {
-					List<Book> bookList = member.getMemBook();
+					List<BookDTO> bookList = member.getMemBook();
 					
 					bookList.remove(book);
 					member.setMemBook(bookList);
@@ -110,10 +110,10 @@ public class LibraryService {
 		System.out.print("도서 제목 입력: ");
 		String searchBookTitle = sc.nextLine();
 
-		List<Book> bookList = bookDAO.selectByTitle(searchBookTitle);
+		List<BookDTO> bookList = bookDAO.selectByTitle(searchBookTitle);
 
 		System.out.println("\n-----검색된 결과 출력-----");
-		for (Book book : bookList) {
+		for (BookDTO book : bookList) {
 			System.out.println(book.toString());
 		}
 	}

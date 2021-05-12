@@ -33,7 +33,7 @@ public class MemberService {
 		System.out.print("주소: ");
 		String inputAddr = sc.nextLine();
 
-		Member member = memberDAO.selectByEmail(inputEmail);
+		MemberDTO member = memberDAO.selectByEmail(inputEmail);
 
 		if (member != null) { // 중복된 이메일이 있을 경우
 			System.out.println("\n중복된 이메일입니다.\n");
@@ -41,7 +41,7 @@ public class MemberService {
 			// 입력한 비밀번호와 비밀번호 확인 칸의 입력된 값이 다를 경우
 			System.out.println("\n입력 정보를 확인하세요.\n");
 		} else {
-			Member newMember = new Member(inputEmail, inputPwd, inputName, inputPhone, inputAddr);
+			MemberDTO newMember = new MemberDTO(inputEmail, inputPwd, inputName, inputPhone, inputAddr);
 			memberDAO.insertMem(newMember);
 			System.out.println("\n회원가입이 완료되었습니다.\n");
 		}
@@ -49,14 +49,14 @@ public class MemberService {
 		memberDAO.showAll();
 	}
 
-	public Member loginMem() { // 로그인
+	public MemberDTO loginMem() { // 로그인
 		System.out.print("이메일 : ");
 		String inputEmail = sc.nextLine();
 
 		System.out.print("비밀번호 : ");
 		String inputPwd = sc.nextLine();
 
-		Member member = memberDAO.selectByEmail(inputEmail);
+		MemberDTO member = memberDAO.selectByEmail(inputEmail);
 
 		if (member == null) {
 			System.out.println("\n입력 정보를 확인하세요.\n");
@@ -75,7 +75,7 @@ public class MemberService {
 		return member;
 	}
 
-	public void updateMem(Member _member) { // 회원 수정
+	public void updateMem(MemberDTO _member) { // 회원 수정
 		System.out.print("현재 비밀번호 : ");
 		String oldPwd = sc.nextLine();
 
@@ -85,7 +85,7 @@ public class MemberService {
 		System.out.print("새 비밀번호 확인 : ");
 		String newConfirmPwd = sc.nextLine();
 
-		Member member = memberDAO.selectByEmail(_member.getMemEmail());
+		MemberDTO member = memberDAO.selectByEmail(_member.getMemEmail());
 
 		if (member == null) { // 계정이 존재하지 않을 때
 			System.out.println("\n계정이 존재하지 않습니다.\n");
@@ -106,7 +106,7 @@ public class MemberService {
 		System.out.println("\n삭제할 회원의 이메일을 입력하세요.\n");
 		String inputEmail = sc.nextLine();
 
-		Member member = memberDAO.selectByEmail(inputEmail);
+		MemberDTO member = memberDAO.selectByEmail(inputEmail);
 
 		if (member == null) {
 			System.out.println("\n계정이 존재하지 않습니다.\n");

@@ -30,12 +30,12 @@ public class BookService {
 		System.out.print("책의 출판사 : ");
 		String inputBookPublisher = sc.nextLine();
 
-		Book book = bookDAO.selectById(inputBookId);
+		BookDTO book = bookDAO.selectById(inputBookId);
 
 		if (book != null) { // 일련번호가 존재한다.
 			System.out.println("\n같은 일련번호를 가진 책이 있습니다.\n");
 		} else {
-			Book newBook = new Book(inputBookId, inputBookTitle, inputBookAuthor, inputBookPublisher);
+			BookDTO newBook = new BookDTO(inputBookId, inputBookTitle, inputBookAuthor, inputBookPublisher);
 			bookDAO.insertBook(newBook);
 			System.out.println("\n책 추가 성공\n");
 		}
@@ -47,7 +47,7 @@ public class BookService {
 		System.out.print("책의 일련번호 : ");
 		String inputBookId = sc.nextLine();
 
-		Book book = bookDAO.selectById(inputBookId);
+		BookDTO book = bookDAO.selectById(inputBookId);
 
 		if (book == null) {
 			System.out.println("\n삭제할 책이 존재하지 않습니다.\n");

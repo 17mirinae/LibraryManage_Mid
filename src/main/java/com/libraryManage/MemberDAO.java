@@ -4,36 +4,36 @@ import java.io.*;
 import java.util.*;
 
 public class MemberDAO {
-	private Map<String, Member> map = new HashMap<>();
+	private Map<String, MemberDTO> map = new HashMap<>();
 	private String filePath = "./src/main/resources/member_data.dat";
 
-	public Member selectByEmail(String email) {
+	public MemberDTO selectByEmail(String email) {
 		importFromFile();
 		return map.get(email);
 	}
 
-	public void printBookList(Member member) {
+	public void printBookList(MemberDTO member) {
 		System.out.println("\n-----대여한 도서-----");
-		List<Book> bookList = member.getMemBook();
+		List<BookDTO> bookList = member.getMemBook();
 		
-		for(Book book : bookList) {
+		for(BookDTO book : bookList) {
 			System.out.println(book.toString());
 		}
 	}
 
-	public void insertMem(Member member) {
+	public void insertMem(MemberDTO member) {
 		importFromFile();
 		map.put(member.getMemEmail(), member);
 		exportToFile();
 	}
 
-	public void updateMem(Member member) {
+	public void updateMem(MemberDTO member) {
 		importFromFile();
 		map.replace(member.getMemEmail(), member);
 		exportToFile();
 	}
 
-	public void deleteMem(Member member) {
+	public void deleteMem(MemberDTO member) {
 		importFromFile();
 		map.remove(member.getMemEmail());
 		exportToFile();
@@ -43,8 +43,8 @@ public class MemberDAO {
 		System.out.println("사용자 이메일\t\t사용자 비밀번호\t\t사용자 이름\t\t사용자 연락처\t\t사용자 주소\t\t사용자 등록시간");
 		System.out.println("---------------------------------------------------------------------------------------");
 
-		for (Map.Entry<String, Member> element : map.entrySet()) {
-			Member valueFromMap = element.getValue();
+		for (Map.Entry<String, MemberDTO> element : map.entrySet()) {
+			MemberDTO valueFromMap = element.getValue();
 			System.out.println(valueFromMap.toString());
 		}
 	}
@@ -66,12 +66,12 @@ public class MemberDAO {
 		}
 	}
 
-	public Map<String, Member> importFromFile() {
+	public Map<String, MemberDTO> importFromFile() {
 		try {
 			FileInputStream fileStream = new FileInputStream(filePath);
 			ObjectInputStream objInputStream = new ObjectInputStream(fileStream);
 
-			HashMap<String, Member> objFromFile = (HashMap<String, Member>) objInputStream.readObject();
+			HashMap<String, MemberDTO> objFromFile = (HashMap<String, MemberDTO>) objInputStream.readObject();
 			objInputStream.close();
 
 			this.map = objFromFile;
@@ -80,7 +80,7 @@ public class MemberDAO {
 
 			while (it.hasNext()) { // 맵 키가 존재할 경우
 				String key = it.next();
-				Member value = (Member) map.get(key); // 키에 해당되는 객체 꺼내옴
+				MemberDTO value = (MemberDTO) map.get(key); // 키에 해당되는 객체 꺼내옴
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("\n파일이 없습니다.\n");

@@ -3,16 +3,16 @@ package com.libraryManage;
 import java.util.*;
 import java.io.*;
 
-public class Member implements Serializable {
+public class MemberDTO implements Serializable {
 	private String memEmail; // 사용자 이메일
 	private String memPwd; // 사용자 비밀번호
 	private String memName; // 사용자 이름
 	private String memPhone; // 사용자 연락처
 	private String memAddr; // 사용자 주소
 	private Date registerDate; // 사용자 등록시간
-	private List<Book> memBook = new ArrayList<Book>(); // 대여한 도서 리스트
+	private List<BookDTO> memBook = new ArrayList<BookDTO>(); // 대여한 도서 리스트
 
-	public Member(String _memEmail, String _memPwd, String _memName, String _memPhone, String _memAddr) {
+	public MemberDTO(String _memEmail, String _memPwd, String _memName, String _memPhone, String _memAddr) {
 		this.memEmail = _memEmail;
 		this.memPwd = _memPwd;
 		this.memName = _memName;
@@ -69,11 +69,11 @@ public class Member implements Serializable {
 		this.registerDate = registerDate;
 	}
 
-	public List<Book> getMemBook() {
+	public List<BookDTO> getMemBook() {
 		return memBook;
 	}
 
-	public void setMemBook(List<Book> memBook) {
+	public void setMemBook(List<BookDTO> memBook) {
 		this.memBook = memBook;
 	}
 

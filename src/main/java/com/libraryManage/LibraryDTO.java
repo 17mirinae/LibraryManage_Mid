@@ -1,6 +1,6 @@
 package com.libraryManage;
 
-public class Library {
+public class LibraryDTO {
 	private String memEmail;
 	private String bookId;
 	private String lendDate;

@@ -4,19 +4,19 @@ import java.io.*;
 import java.util.*;
 
 public class BookDAO implements Serializable {
-	private Map<String, Book> map = new HashMap<>();
+	private Map<String, BookDTO> map = new HashMap<>();
 	private String filePath = "./src/main/resources/book_data.dat";
 
-	public Book selectById(String bookId) { // 일련번호로 데이터 받아오기
+	public BookDTO selectById(String bookId) { // 일련번호로 데이터 받아오기
 		importFromFile();
 		return map.get(bookId);
 	}
 
-	public List<Book> selectByTitle(String bookTitle) { // 책 이름으로 검색
-		List<Book> bookSearched = new ArrayList<Book>();
+	public List<BookDTO> selectByTitle(String bookTitle) { // 책 이름으로 검색
+		List<BookDTO> bookSearched = new ArrayList<BookDTO>();
 		importFromFile(); // 현재 this.map 에 파일에서 가져온 데이터를 넣어놨음
 
-		for (Map.Entry<String, Book> element : map.entrySet()) {
+		for (Map.Entry<String, BookDTO> element : map.entrySet()) {
 			String bookTitleFromMap = element.getValue().getBookTitle(); // 책 제목
 			if (bookTitleFromMap.equals(bookTitle)) {
 				bookSearched.add(element.getValue());
@@ -26,19 +26,19 @@ public class BookDAO implements Serializable {
 		return bookSearched;
 	}
 
-	public void insertBook(Book book) {
+	public void insertBook(BookDTO book) {
 		importFromFile();
 		map.put(book.getBookId(), book);
 		exportToFile();
 	}
 
-	public void updateBook(Book book) {
+	public void updateBook(BookDTO book) {
 		importFromFile();
 		map.replace(book.getBookId(), book);
 		exportToFile();
 	}
 
-	public void deleteBook(Book book) {
+	public void deleteBook(BookDTO book) {
 		importFromFile();
 		map.remove(book.getBookId());
 		exportToFile();
@@ -48,9 +48,9 @@ public class BookDAO implements Serializable {
 		System.out.println("책 일련번호\t\t책 제목\t\t책 저자\t\t책 출판사\t\t대여 여부\t\t대여한 사람");
 		System.out.println("---------------------------------------------------------------------------------------");
 
-		for (Map.Entry<String, Book> element : map.entrySet()) {
+		for (Map.Entry<String, BookDTO> element : map.entrySet()) {
 			// String bookIdFromMap = element.getKey();
-			Book valueFromMap = element.getValue();
+			BookDTO valueFromMap = element.getValue();
 			System.out.println(valueFromMap.toString());
 		}
 	}
@@ -72,12 +72,12 @@ public class BookDAO implements Serializable {
 		}
 	}
 
-	public Map<String, Book> importFromFile() {
+	public Map<String, BookDTO> importFromFile() {
 		try {
 			FileInputStream fileStream = new FileInputStream(filePath);
 			ObjectInputStream objInputStream = new ObjectInputStream(fileStream);
 
-			HashMap<String, Book> objFromFile = (HashMap<String, Book>) objInputStream.readObject();
+			HashMap<String, BookDTO> objFromFile = (HashMap<String, BookDTO>) objInputStream.readObject();
 			objInputStream.close();
 
 			this.map = objFromFile;
@@ -86,7 +86,7 @@ public class BookDAO implements Serializable {
 
 			while (it.hasNext()) { // 맵 키가 존재할 경우
 				String key = it.next();
-				Book value = (Book) map.get(key); // 키에 해당되는 객체 꺼내옴
+				BookDTO value = (BookDTO) map.get(key); // 키에 해당되는 객체 꺼내옴
 				// System.out.println(key + "-> " + value.toString());
 			}
 		} catch (FileNotFoundException e) {
