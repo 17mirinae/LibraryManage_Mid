@@ -1,7 +1,9 @@
-package com.libraryManage;
+package com.libraryManage.Service;
 
 import java.util.*;
 import org.springframework.beans.factory.annotation.*;
+import com.libraryManage.DAO.*;
+import com.libraryManage.DTO.*;
 
 public class LibraryService {
 	Scanner sc = new Scanner(System.in);

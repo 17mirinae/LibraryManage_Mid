@@ -1,8 +1,9 @@
-package com.libraryManage;
+package com.libraryManage.Service;
 
 import java.util.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import com.libraryManage.DAO.*;
+import com.libraryManage.DTO.*;
 
 public class MemberService {
 	Scanner sc = new Scanner(System.in);

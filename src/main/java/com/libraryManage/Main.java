@@ -5,6 +5,11 @@ import java.util.*;
 import org.springframework.context.*;
 import org.springframework.context.support.*;
 
+import com.libraryManage.DTO.MemberDTO;
+import com.libraryManage.Service.BookService;
+import com.libraryManage.Service.LibraryService;
+import com.libraryManage.Service.MemberService;
+
 //도서관리시스템+다중사용자
 //도서의 검색/대출/반납 + 예약
 //회원 생성/삭제/ 대출반납내역/ + 회원정보수정,예약내용
@@ -16,7 +21,7 @@ import org.springframework.context.support.*;
 public class Main {
 	public static Scanner sc = new Scanner(System.in);
 
-	public static void main(String[] args) {
+	public static void main2(String[] args) {
 		ApplicationContext ctx = new GenericXmlApplicationContext("classpath:applicationContext.xml");
 
 		MemberService MemSvc = (MemberService) ctx.getBean("MemSvc"); // 회원가입, 로그인

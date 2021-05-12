@@ -1,7 +1,8 @@
-package com.libraryManage;
+package com.libraryManage.DAO;
 
 import java.io.*;
 import java.util.*;
+import com.libraryManage.DTO.*;
 
 public class MemberDAO {
 	private Map<String, MemberDTO> map = new HashMap<>();

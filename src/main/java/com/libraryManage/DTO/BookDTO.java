@@ -1,4 +1,4 @@
-package com.libraryManage;
+package com.libraryManage.DTO;
 
 import java.io.*;
 
@@ -11,7 +11,7 @@ public class BookDTO implements Serializable {
 	private int bookCount; // 책 재고수
 	private boolean isLended; // 책 대여여부
 
-	BookDTO(String _bookId, String _bookTitle, String _bookAuthor, String _bookPublisher) {
+	public BookDTO(String _bookId, String _bookTitle, String _bookAuthor, String _bookPublisher) {
 		this.bookId = _bookId;
 		this.bookTitle = _bookTitle;
 		this.bookAuthor = _bookAuthor;

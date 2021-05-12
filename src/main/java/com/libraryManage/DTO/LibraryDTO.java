@@ -1,4 +1,4 @@
-package com.libraryManage;
+package com.libraryManage.DTO;
 
 public class LibraryDTO {
 	private String memEmail;

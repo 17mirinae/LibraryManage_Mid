@@ -1,6 +1,8 @@
-package com.libraryManage;
+package com.libraryManage.DAO;
 
 import java.util.*;
+import com.libraryManage.DTO.*;
+
 import java.io.*;
 
 public class LibraryDAO {

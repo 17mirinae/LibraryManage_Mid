@@ -1,4 +1,4 @@
-package com.libraryManage;
+package com.libraryManage.DTO;
 
 import java.util.*;
 import java.io.*;
