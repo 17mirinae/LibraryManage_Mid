@@ -9,4 +9,14 @@ public class MainController {
 	public String index() {
 		return "index";
 	}
+	
+	@GetMapping("/signIn")
+	public String signIn() {
+		return "signIn";
+	}
+	
+	@GetMapping("/signUp")
+	public String signUp() {
+		return "signUp";
+	}
 }
