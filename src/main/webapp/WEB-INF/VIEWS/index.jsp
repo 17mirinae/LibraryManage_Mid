@@ -38,10 +38,10 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
             <div class="container">
-                <a class="btn btn-primary" href="unifiedSearch" style="background-color: #e3f2fd; font-color: 0d6efd;">자료 검색</a>
-                <a class="btn btn-primary" href="" style="background-color: #e3f2fd; font-color: 0d6efd;">신청 / 참여</a>
-                <a class="btn btn-primary" href="library_use" style="background-color: #e3f2fd; font-color: 0d6efd;">도서관 이용</a>
-                <a class="btn btn-primary" href="library_info" style="background-color: #e3f2fd; font-color: 0d6efd;">도서관 정보</a>
+                <a class="btn" href="unifiedSearch" style="background-color: #e3f2fd; color: #0d6efd;">자료 검색</a>
+                <a class="btn" href="" style="background-color: #e3f2fd; color: #0d6efd;">신청 / 참여</a>
+                <a class="btn" href="library_use" style="background-color: #e3f2fd; color: #0d6efd;">도서관 이용</a>
+                <a class="btn" href="library_info" style="background-color: #e3f2fd; color: #0d6efd;">도서관 정보</a>
             </div>
         </nav>
         <!-- Masthead-->
@@ -56,8 +56,8 @@
                             <form>
                                 <div class="input-group input-group-lg">
                                     <input class="form-control" type="text" placeholder="제목을 입력해주세요..." aria-label="Enter your email..." aria-describedby="button-submit" />
-                                    <button class="btn btn-primary" id="button-submit" type="button">검색</button>
-                                    <button class="btn btn-primary" id="button-detail-submit" type="button">상세 검색</button>
+                                    <button class="btn btn-primary" id="button-submit" type="button" style="border-radius: 0 0.25rem 0.25rem 0;">검색</button>
+                                    <button class="btn btn-primary" id="button-detail-submit" type="button" style="margin-left: 10px; border-radius: 0.25rem">상세 검색</button>
                                 </div>
                             </form>
                         </div>
